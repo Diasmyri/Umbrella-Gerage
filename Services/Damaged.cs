@@ -14,49 +14,54 @@ namespace Umbrella_gerage.Services
             _context = context;
         }
 
-        // Ambil semua data kerusakan (termasuk relasi Client)
-        public List<Damaged> GetAllDamages()
+        // Ambil semua data service kendaraan
+        public List<Damaged> GetAll()
         {
             return _context.Damaged
                 .OrderByDescending(d => d.ReportDate)
                 .ToList();
         }
 
-        // Ambil data berdasarkan ID
-        public Damaged GetDamageById(int id)
+        // Ambil data berdasarkan nomor plat
+        public Damaged GetByPlate(string plateNumber)
         {
-            return _context.Damaged.FirstOrDefault(d => d.DamagedId == id);
+            return _context.Damaged
+                .FirstOrDefault(d => d.PlateNumber == plateNumber);
         }
 
-        // Tambah data baru
-        public void AddDamage(Damaged damage)
+        // Tambah data service baru
+        public void Add(Damaged damaged)
         {
-            _context.Damaged.Add(damage);
+            _context.Damaged.Add(damaged);
             _context.SaveChanges();
         }
 
-        // Update data
-        public void UpdateDamage(Damaged damage)
+        // Update data service berdasarkan nomor plat
+        public void Update(Damaged damaged)
         {
-            var existing = _context.Damaged.FirstOrDefault(d => d.DamagedId == damage.DamagedId);
+            var existing = _context.Damaged
+                .FirstOrDefault(d => d.PlateNumber == damaged.PlateNumber);
+
             if (existing != null)
             {
-                existing.ItemName = damage.ItemName;
-                existing.Description = damage.Description;
-                existing.ReportDate = damage.ReportDate;
-                existing.ClientId = damage.ClientId;
+                existing.CarType = damaged.CarType;
+                existing.ServiceType = damaged.ServiceType;
+                existing.Description = damaged.Description;
+                existing.ReportDate = damaged.ReportDate;
 
                 _context.SaveChanges();
             }
         }
 
-        // Hapus data
-        public void DeleteDamage(int id)
+        // Hapus data service berdasarkan nomor plat
+        public void Delete(string plateNumber)
         {
-            var damage = _context.Damaged.FirstOrDefault(d => d.DamagedId == id);
-            if (damage != null)
+            var damaged = _context.Damaged
+                .FirstOrDefault(d => d.PlateNumber == plateNumber);
+
+            if (damaged != null)
             {
-                _context.Damaged.Remove(damage);
+                _context.Damaged.Remove(damaged);
                 _context.SaveChanges();
             }
         }

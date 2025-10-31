@@ -8,24 +8,23 @@ using System.Threading.Tasks;
 
 namespace Umbrella_gerage.Models
 {
-
     public class Damaged
     {
         [Key]
-        public int DamagedId { get; set; }
+        [MaxLength(20)]
+        public string PlateNumber { get; set; } // primary key input manual
 
         [Required]
-        public string ItemName { get; set; }
-
-        public string Description { get; set; }
+        [MaxLength(50)]
+        public string CarType { get; set; } // jenis mobil
 
         [Required]
+        [MaxLength(100)]
+        public string ServiceType { get; set; } // servis yang dipilih dari combo box
+
+        [MaxLength(200)]
+        public string Description { get; set; } // optional catatan tambahan
+
         public DateTime ReportDate { get; set; } = DateTime.Now;
-
-        // Foreign Key ke Client
-        [ForeignKey("Client")]
-        public int ClientId { get; set; }
-        public Client Client { get; set; }
     }
-
 }
