@@ -21,6 +21,9 @@ namespace Umbrella_gerage.Models
         [MaxLength(20)]
         public string Phone { get; set; }
 
+        [MaxLength(100)]
+        public string Address { get; set; }
+
         public ICollection<Payment> Payments { get; set; }
         public ICollection<Damaged> DamagedItems { get; set; }
     }
