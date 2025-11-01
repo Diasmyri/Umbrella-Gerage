@@ -5,11 +5,11 @@ using Umbrella_gerage.Models; // pastikan ini sesuai folder model kamu
 
 namespace Umbrella_gerage.Services
 {
-    public class ClientService
+    public class ClientServices
     {
         private readonly AppDbContext _context;
 
-        public ClientService(AppDbContext context)
+        public ClientServices(AppDbContext context)
         {
             _context = context;
         }

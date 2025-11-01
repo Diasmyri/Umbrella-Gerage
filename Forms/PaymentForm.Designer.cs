@@ -1,6 +1,6 @@
 ﻿namespace Umbrella_gerage.Forms
 {
-    partial class Payment
+    partial class PaymentForm
     {
         /// <summary>
         /// Required designer variable.

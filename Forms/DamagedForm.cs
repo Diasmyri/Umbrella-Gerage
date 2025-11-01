@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Umbrella_gerage.Forms
 {
-    public partial class Payment: Form
+    public partial class DamagedForm: Form
     {
-        public Payment()
+        public DamagedForm()
         {
             InitializeComponent();
         }

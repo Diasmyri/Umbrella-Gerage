@@ -1,6 +1,6 @@
 ﻿namespace Umbrella_gerage.Forms
 {
-    partial class Client
+    partial class ClientForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@
             Label label4;
             Label label5;
             Label label6;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Client));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientForm));
             txtName = new TextBox();
             txtEmail = new TextBox();
             txtPhone = new TextBox();

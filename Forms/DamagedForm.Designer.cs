@@ -1,6 +1,6 @@
 ﻿namespace Umbrella_gerage.Forms
 {
-    partial class Damaged
+    partial class DamagedForm
     {
         /// <summary>
         /// Required designer variable.

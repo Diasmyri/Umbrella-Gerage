@@ -13,9 +13,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Umbrella_gerage.Forms
 {
-    public partial class Client : Form
+    public partial class ClientForm : Form
     {
-        public Client()
+        public ClientForm()
         {
             InitializeComponent();
         }
