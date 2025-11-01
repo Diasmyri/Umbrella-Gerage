@@ -67,7 +67,6 @@
             // label2
             // 
             label2.BackColor = Color.Transparent;
-            label2.BorderStyle = BorderStyle.FixedSingle;
             label2.Font = new Font("CollegiateInsideFLF", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Coral;
             label2.Location = new Point(32, 140);
@@ -80,13 +79,12 @@
             // label3
             // 
             label3.BackColor = Color.Transparent;
-            label3.BorderStyle = BorderStyle.FixedSingle;
             label3.Font = new Font("CollegiateInsideFLF", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Coral;
             label3.Location = new Point(32, 195);
             label3.Name = "label3";
             label3.Size = new Size(105, 27);
-            label3.TabIndex = 4;
+            label3.TabIndex = 6;
             label3.Text = "EMAIL";
             label3.UseMnemonic = false;
             // 
@@ -206,7 +204,7 @@
             btnDelete.Text = "DELETE";
             btnDelete.UseVisualStyleBackColor = true;
             // 
-            // Client
+            // ClientForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -228,7 +226,7 @@
             Controls.Add(label1);
             Controls.Add(txtName);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "Client";
+            Name = "ClientForm";
             Text = "Client";
             Load += Client_Load;
             ((System.ComponentModel.ISupportInitialize)dgvClient).EndInit();
