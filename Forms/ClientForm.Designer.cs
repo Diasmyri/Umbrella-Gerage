@@ -67,8 +67,7 @@
             // label2
             // 
             label2.BackColor = Color.Transparent;
-            label2.BorderStyle = BorderStyle.FixedSingle;
-            label2.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("CollegiateInsideFLF", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Coral;
             label2.Location = new Point(28, 105);
             label2.Name = "label2";
@@ -80,13 +79,12 @@
             // label3
             // 
             label3.BackColor = Color.Transparent;
-            label3.BorderStyle = BorderStyle.FixedSingle;
-            label3.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("CollegiateInsideFLF", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Coral;
             label3.Location = new Point(28, 146);
             label3.Name = "label3";
-            label3.Size = new Size(92, 23);
-            label3.TabIndex = 4;
+            label3.Size = new Size(105, 27);
+            label3.TabIndex = 6;
             label3.Text = "EMAIL";
             label3.UseMnemonic = false;
             // 
@@ -221,6 +219,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(txtName);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "ClientForm";
             Text = "Client";
             Load += Client_Load;
