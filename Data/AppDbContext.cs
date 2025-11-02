@@ -12,7 +12,7 @@ namespace Umbrella_gerage.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Client> Clients { get; set; }
-        public DbSet<Damaged> Damaged { get; set; }
+        public DbSet<Damaged> Damageds { get; set; }
         public DbSet<Payment> Payments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

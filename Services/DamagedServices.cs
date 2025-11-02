@@ -14,32 +14,32 @@ namespace Umbrella_gerage.Services
             _context = context;
         }
 
-        // Ambil semua data service kendaraan
+        // Ambil semua data kendaraan rusak (urut berdasarkan tanggal terbaru)
         public List<Damaged> GetAll()
         {
-            return _context.Damaged
+            return _context.Damageds
                 .OrderByDescending(d => d.ReportDate)
                 .ToList();
         }
 
-        // Ambil data berdasarkan nomor plat
+        // Ambil data berdasarkan plat nomor
         public Damaged GetByPlate(string plateNumber)
         {
-            return _context.Damaged
+            return _context.Damageds
                 .FirstOrDefault(d => d.PlateNumber == plateNumber);
         }
 
-        // Tambah data service baru
+        // Tambah data baru
         public void Add(Damaged damaged)
         {
-            _context.Damaged.Add(damaged);
+            _context.Damageds.Add(damaged);
             _context.SaveChanges();
         }
 
-        // Update data service berdasarkan nomor plat
+        // Update data berdasarkan plat nomor
         public void Update(Damaged damaged)
         {
-            var existing = _context.Damaged
+            var existing = _context.Damageds
                 .FirstOrDefault(d => d.PlateNumber == damaged.PlateNumber);
 
             if (existing != null)
@@ -53,15 +53,15 @@ namespace Umbrella_gerage.Services
             }
         }
 
-        // Hapus data service berdasarkan nomor plat
+        // Hapus data berdasarkan plat nomor
         public void Delete(string plateNumber)
         {
-            var damaged = _context.Damaged
+            var damaged = _context.Damageds
                 .FirstOrDefault(d => d.PlateNumber == plateNumber);
 
             if (damaged != null)
             {
-                _context.Damaged.Remove(damaged);
+                _context.Damageds.Remove(damaged);
                 _context.SaveChanges();
             }
         }

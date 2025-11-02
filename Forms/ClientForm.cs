@@ -73,20 +73,44 @@ namespace Umbrella_gerage.Forms
             }
         }
 
-        // ✅ Tombol SIMPAN (Tambah atau Update Otomatis)
-        private void btnSave_Click(object sender, EventArgs e)
+        // ✅ Validasi input sebelum simpan/update
+        private bool ValidateInput()
         {
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
                 MessageBox.Show("Nama wajib diisi.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                MessageBox.Show("Email wajib diisi.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPhone.Text))
+            {
+                MessageBox.Show("Nomor telepon wajib diisi.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtAddress.Text))
+            {
+                MessageBox.Show("Alamat wajib diisi.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+
+        // ✅ Tombol SIMPAN (Tambah atau Update Otomatis)
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (!ValidateInput())
+                return;
 
             using (var db = new AppDbContext())
             {
                 if (selectedClientId == -1)
                 {
-                    // Tambah data baru
                     var newClient = new Client
                     {
                         Name = txtName.Text.Trim(),
@@ -98,7 +122,6 @@ namespace Umbrella_gerage.Forms
                 }
                 else
                 {
-                    // Update data yang sudah ada
                     var existing = db.Clients.FirstOrDefault(c => c.ClientId == selectedClientId);
                     if (existing != null)
                     {
@@ -115,6 +138,7 @@ namespace Umbrella_gerage.Forms
             LoadClientData();
             MessageBox.Show("Data berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
 
         // ✅ Tombol UPDATE (khusus untuk memperbarui data yang dipilih)
         private void btnUpdate_Click(object sender, EventArgs e)

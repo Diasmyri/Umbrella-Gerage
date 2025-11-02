@@ -25,6 +25,8 @@ namespace Umbrella_gerage.Models
         [MaxLength(200)]
         public string Description { get; set; } // optional catatan tambahan
 
-        public DateTime ReportDate { get; set; } = DateTime.Now;
+        [Column(TypeName = "timestamp without time zone")]
+        public DateTime ReportDate { get; set; } = DateTime.UtcNow;
+
     }
 }

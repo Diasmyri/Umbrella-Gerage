@@ -23,7 +23,7 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -34,17 +34,17 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            txtPlateNumber = new TextBox();
-            txtDescription = new TextBox();
-            comboCarType = new ComboBox();
-            comboServiceType = new ComboBox();
+            txtPlatNomor = new TextBox();
+            txtDeskripsi = new TextBox();
+            cmbTipeMobil = new ComboBox();
+            cmbTipeServis = new ComboBox();
             dateReport = new DateTimePicker();
-            btnAdd = new Button();
+            btnSave = new Button();
             btnUpdate = new Button();
             btnDelete = new Button();
             label7 = new Label();
-            dataGridViewDamaged = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewDamaged).BeginInit();
+            dgvDamaged = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvDamaged).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -63,9 +63,9 @@
             label2.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(27, 84);
             label2.Name = "label2";
-            label2.Size = new Size(112, 19);
+            label2.Size = new Size(94, 19);
             label2.TabIndex = 1;
-            label2.Text = "Plate Number";
+            label2.Text = "Plat Nomor";
             // 
             // label3
             // 
@@ -73,9 +73,9 @@
             label3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.Location = new Point(27, 132);
             label3.Name = "label3";
-            label3.Size = new Size(77, 19);
+            label3.Size = new Size(87, 19);
             label3.TabIndex = 2;
-            label3.Text = "Car Type";
+            label3.Text = "Tipe Mobil";
             // 
             // label4
             // 
@@ -83,9 +83,9 @@
             label4.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.Location = new Point(27, 176);
             label4.Name = "label4";
-            label4.Size = new Size(89, 20);
+            label4.Size = new Size(79, 20);
             label4.TabIndex = 3;
-            label4.Text = "Service Type";
+            label4.Text = "Tipe Servis";
             // 
             // label5
             // 
@@ -93,9 +93,9 @@
             label5.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.Location = new Point(27, 218);
             label5.Name = "label5";
-            label5.Size = new Size(80, 20);
+            label5.Size = new Size(67, 20);
             label5.TabIndex = 4;
-            label5.Text = "Description";
+            label5.Text = "Deskripsi";
             // 
             // label6
             // 
@@ -103,43 +103,41 @@
             label6.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.Location = new Point(27, 255);
             label6.Name = "label6";
-            label6.Size = new Size(81, 20);
+            label6.Size = new Size(102, 20);
             label6.TabIndex = 5;
-            label6.Text = "Report Date";
+            label6.Text = "Tanggal Servis";
             // 
-            // txtPlateNumber
+            // txtPlatNomor
             // 
-            txtPlateNumber.Location = new Point(191, 84);
-            txtPlateNumber.Name = "txtPlateNumber";
-            txtPlateNumber.Size = new Size(155, 27);
-            txtPlateNumber.TabIndex = 6;
-            txtPlateNumber.TextChanged += textBox1_TextChanged;
+            txtPlatNomor.Location = new Point(191, 84);
+            txtPlatNomor.Name = "txtPlatNomor";
+            txtPlatNomor.Size = new Size(175, 27);
+            txtPlatNomor.TabIndex = 6;
             // 
-            // txtDescription
+            // txtDeskripsi
             // 
-            txtDescription.Location = new Point(191, 214);
-            txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(155, 27);
-            txtDescription.TabIndex = 7;
-            txtDescription.TextChanged += txtDescription_TextChanged;
+            txtDeskripsi.Location = new Point(191, 214);
+            txtDeskripsi.Name = "txtDeskripsi";
+            txtDeskripsi.Size = new Size(175, 27);
+            txtDeskripsi.TabIndex = 7;
             // 
-            // comboCarType
+            // cmbTipeMobil
             // 
-            comboCarType.FormattingEnabled = true;
-            comboCarType.Location = new Point(191, 127);
-            comboCarType.Name = "comboCarType";
-            comboCarType.Size = new Size(155, 28);
-            comboCarType.TabIndex = 8;
-            comboCarType.SelectedIndexChanged += comboCarType_SelectedIndexChanged;
+            cmbTipeMobil.FormattingEnabled = true;
+            cmbTipeMobil.Items.AddRange(new object[] { "Avanza", "Terios", "Xpander" });
+            cmbTipeMobil.Location = new Point(191, 127);
+            cmbTipeMobil.Name = "cmbTipeMobil";
+            cmbTipeMobil.Size = new Size(175, 28);
+            cmbTipeMobil.TabIndex = 8;
             // 
-            // comboServiceType
+            // cmbTipeServis
             // 
-            comboServiceType.FormattingEnabled = true;
-            comboServiceType.Location = new Point(191, 172);
-            comboServiceType.Name = "comboServiceType";
-            comboServiceType.Size = new Size(155, 28);
-            comboServiceType.TabIndex = 9;
-            comboServiceType.SelectedIndexChanged += comboServiceType_SelectedIndexChanged;
+            cmbTipeServis.FormattingEnabled = true;
+            cmbTipeServis.Items.AddRange(new object[] { "Servis Kecil", "Servis Sedang", "Servis Besar" });
+            cmbTipeServis.Location = new Point(191, 172);
+            cmbTipeServis.Name = "cmbTipeServis";
+            cmbTipeServis.Size = new Size(175, 28);
+            cmbTipeServis.TabIndex = 9;
             // 
             // dateReport
             // 
@@ -148,36 +146,35 @@
             dateReport.Name = "dateReport";
             dateReport.Size = new Size(284, 26);
             dateReport.TabIndex = 10;
-            dateReport.ValueChanged += dateReport_ValueChanged;
             // 
-            // btnAdd
+            // btnSave
             // 
-            btnAdd.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAdd.Location = new Point(119, 318);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(100, 23);
-            btnAdd.TabIndex = 11;
-            btnAdd.Text = "ADD";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
+            btnSave.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSave.Location = new Point(217, 314);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(100, 30);
+            btnSave.TabIndex = 11;
+            btnSave.Text = "SAVE";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnUpdate
             // 
             btnUpdate.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnUpdate.Location = new Point(246, 318);
+            btnUpdate.Location = new Point(344, 314);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(100, 23);
+            btnUpdate.Size = new Size(100, 30);
             btnUpdate.TabIndex = 12;
-            btnUpdate.Text = "UPDATE ";
+            btnUpdate.Text = "UPDATE";
             btnUpdate.UseVisualStyleBackColor = true;
             btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
             btnDelete.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnDelete.Location = new Point(375, 318);
+            btnDelete.Location = new Point(473, 314);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(100, 23);
+            btnDelete.Size = new Size(100, 30);
             btnDelete.TabIndex = 13;
             btnDelete.Text = "DELETE";
             btnDelete.UseVisualStyleBackColor = true;
@@ -186,37 +183,43 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(569, 34);
+            label7.Location = new Point(311, 363);
             label7.Margin = new Padding(5, 0, 5, 0);
             label7.Name = "label7";
-            label7.Size = new Size(213, 20);
+            label7.Size = new Size(133, 20);
             label7.TabIndex = 14;
-            label7.Text = "dataGridViewDamaged";
+            label7.Text = "Data Damaged";
             // 
-            // dataGridViewDamaged
+            // dgvDamaged
             // 
-            dataGridViewDamaged.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewDamaged.Location = new Point(514, 84);
-            dataGridViewDamaged.Name = "dataGridViewDamaged";
-            dataGridViewDamaged.Size = new Size(357, 257);
-            dataGridViewDamaged.TabIndex = 15;
-            dataGridViewDamaged.CellContentClick += dataGridViewDamaged_CellContentClick;
+            dgvDamaged.AllowUserToAddRows = false;
+            dgvDamaged.AllowUserToDeleteRows = false;
+            dgvDamaged.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDamaged.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDamaged.Location = new Point(27, 386);
+            dgvDamaged.MultiSelect = false;
+            dgvDamaged.Name = "dgvDamaged";
+            dgvDamaged.ReadOnly = true;
+            dgvDamaged.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDamaged.Size = new Size(711, 185);
+            dgvDamaged.TabIndex = 15;
+            dgvDamaged.CellClick += dgvDamaged_CellClick;
             // 
             // DamagedForm
             // 
             AutoScaleDimensions = new SizeF(11F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(912, 376);
-            Controls.Add(dataGridViewDamaged);
+            ClientSize = new Size(762, 595);
+            Controls.Add(dgvDamaged);
             Controls.Add(label7);
             Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
-            Controls.Add(btnAdd);
+            Controls.Add(btnSave);
             Controls.Add(dateReport);
-            Controls.Add(comboServiceType);
-            Controls.Add(comboCarType);
-            Controls.Add(txtDescription);
-            Controls.Add(txtPlateNumber);
+            Controls.Add(cmbTipeServis);
+            Controls.Add(cmbTipeMobil);
+            Controls.Add(txtDeskripsi);
+            Controls.Add(txtPlatNomor);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -227,10 +230,12 @@
             Margin = new Padding(5, 4, 5, 4);
             Name = "DamagedForm";
             Text = "Damaged";
-            ((System.ComponentModel.ISupportInitialize)dataGridViewDamaged).EndInit();
+            Load += DamagedForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvDamaged).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
+
 
         #endregion
 
@@ -240,15 +245,15 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox txtPlateNumber;
-        private TextBox txtDescription;
-        private ComboBox comboCarType;
-        private ComboBox comboServiceType;
+        private TextBox txtPlatNomor;
+        private TextBox txtDeskripsi;
+        private ComboBox cmbTipeMobil;
+        private ComboBox cmbTipeServis;
         private DateTimePicker dateReport;
-        private Button btnAdd;
+        private Button btnSave;
         private Button btnUpdate;
         private Button btnDelete;
         private Label label7;
-        private DataGridView dataGridViewDamaged;
+        private DataGridView dgvDamaged;
     }
 }
