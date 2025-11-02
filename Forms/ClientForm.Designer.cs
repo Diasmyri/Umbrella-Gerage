@@ -67,7 +67,7 @@
             // label2
             // 
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("CollegiateInsideFLF", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Coral;
             label2.Location = new Point(28, 105);
             label2.Name = "label2";
@@ -79,7 +79,7 @@
             // label3
             // 
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("CollegiateInsideFLF", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Coral;
             label3.Location = new Point(28, 146);
             label3.Name = "label3";
@@ -172,7 +172,7 @@
             dgvClient.Location = new Point(392, 105);
             dgvClient.Name = "dgvClient";
             dgvClient.RowHeadersWidth = 51;
-            dgvClient.Size = new Size(478, 239);
+            dgvClient.Size = new Size(450, 239);
             dgvClient.TabIndex = 12;
             dgvClient.CellClick += dgvClient_CellClick_1;
             dgvClient.CellContentClick += dgvClient_CellContentClick;

@@ -141,11 +141,11 @@
             // dataGridViewPayment
             // 
             dataGridViewPayment.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewPayment.Location = new Point(306, 215);
+            dataGridViewPayment.Location = new Point(306, 256);
             dataGridViewPayment.Margin = new Padding(3, 2, 3, 2);
             dataGridViewPayment.Name = "dataGridViewPayment";
             dataGridViewPayment.RowHeadersWidth = 51;
-            dataGridViewPayment.Size = new Size(262, 122);
+            dataGridViewPayment.Size = new Size(426, 154);
             dataGridViewPayment.TabIndex = 13;
             dataGridViewPayment.CellContentClick += dataGridViewPayment_CellContentClick;
             // 
@@ -161,7 +161,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(306, 366);
+            btnAdd.Location = new Point(308, 218);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(75, 23);
             btnAdd.TabIndex = 15;
@@ -171,7 +171,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(399, 366);
+            btnUpdate.Location = new Point(401, 218);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(75, 23);
             btnUpdate.TabIndex = 16;
@@ -181,7 +181,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(493, 366);
+            btnDelete.Location = new Point(495, 218);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 17;
@@ -195,7 +195,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(641, 407);
+            ClientSize = new Size(902, 435);
             Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
             Controls.Add(btnAdd);
