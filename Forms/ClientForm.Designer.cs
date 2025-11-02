@@ -197,6 +197,7 @@
             btnDelete.TabIndex = 15;
             btnDelete.Text = "DELETE";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // ClientForm
             // 
@@ -204,7 +205,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(880, 391);
+            ClientSize = new Size(880, 507);
             Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
             Controls.Add(label6);

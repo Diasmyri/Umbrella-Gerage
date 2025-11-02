@@ -23,7 +23,7 @@ namespace Umbrella_gerage.Forms
             LoadClientData();
         }
 
-        // ✅ Load semua data Client ke DataGridView
+        // ✅ Fungsi untuk menampilkan semua data Client ke DataGridView
         private void LoadClientData()
         {
             using (var db = new AppDbContext())
@@ -44,7 +44,7 @@ namespace Umbrella_gerage.Forms
             ClearForm();
         }
 
-        // ✅ Kosongkan input form
+        // ✅ Fungsi untuk mengosongkan semua input form
         private void ClearForm()
         {
             txtName.Clear();
@@ -54,13 +54,13 @@ namespace Umbrella_gerage.Forms
             selectedClientId = -1;
         }
 
-        // ✅ Tambahkan event ini biar nggak error di Designer
+        // ✅ Event kosong untuk menghindari error di Designer
         private void dgvClient_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Kosong, hanya untuk menghindari error binding di Designer
         }
 
-        // ✅ Saat klik baris di DataGridView
+        // ✅ Saat user klik salah satu baris di DataGridView
         private void dgvClient_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -73,7 +73,7 @@ namespace Umbrella_gerage.Forms
             }
         }
 
-        // ✅ Tombol Simpan
+        // ✅ Tombol SIMPAN (Tambah atau Update Otomatis)
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtName.Text))
@@ -98,7 +98,7 @@ namespace Umbrella_gerage.Forms
                 }
                 else
                 {
-                    // Update data
+                    // Update data yang sudah ada
                     var existing = db.Clients.FirstOrDefault(c => c.ClientId == selectedClientId);
                     if (existing != null)
                     {
@@ -116,7 +116,50 @@ namespace Umbrella_gerage.Forms
             MessageBox.Show("Data berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // ✅ Tombol Hapus
+        // ✅ Tombol UPDATE (khusus untuk memperbarui data yang dipilih)
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (selectedClientId == -1)
+            {
+                MessageBox.Show("Silakan pilih data klien yang ingin diperbarui terlebih dahulu.",
+                    "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("Nama wajib diisi.",
+                    "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var db = new AppDbContext())
+            {
+                var client = db.Clients.FirstOrDefault(c => c.ClientId == selectedClientId);
+                if (client != null)
+                {
+                    client.Name = txtName.Text.Trim();
+                    client.Email = txtEmail.Text.Trim();
+                    client.Phone = txtPhone.Text.Trim();
+                    client.Address = txtAddress.Text.Trim();
+
+                    db.SaveChanges();
+
+                    MessageBox.Show("Data klien berhasil diperbarui!",
+                        "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    LoadClientData();
+                    ClearForm();
+                }
+                else
+                {
+                    MessageBox.Show("Data klien tidak ditemukan di database.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        // ✅ Tombol HAPUS
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (selectedClientId == -1)
@@ -125,7 +168,9 @@ namespace Umbrella_gerage.Forms
                 return;
             }
 
-            var confirm = MessageBox.Show("Yakin ingin menghapus data ini?", "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirm = MessageBox.Show("Apakah Anda yakin ingin menghapus data ini?",
+                "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
             if (confirm == DialogResult.Yes)
             {
                 using (var db = new AppDbContext())
@@ -143,33 +188,23 @@ namespace Umbrella_gerage.Forms
             }
         }
 
-        // ✅ Tombol Clear
+        // ✅ Tombol CLEAR untuk mengosongkan form
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearForm();
         }
 
+        // ✅ Event bawaan (tidak digunakan, tapi biar designer tidak error)
         private void Client_Load(object sender, EventArgs e)
         {
-            // Event lama dari Designer — biar tidak error.
-            // Kamu bisa hapus event ini dari Designer nanti lewat Properties.
+            // Bisa dihapus event-nya dari Properties nanti jika tidak digunakan.
         }
 
         private void dgvClient_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                var row = dgvClient.Rows[e.RowIndex];
-                txtName.Text = row.Cells["Name"].Value.ToString();
-                txtEmail.Text = row.Cells["Email"].Value?.ToString();
-                txtPhone.Text = row.Cells["Phone"].Value?.ToString();
-                txtAddress.Text = row.Cells["Address"].Value?.ToString();
-            }
+            // Teruskan ke handler utama supaya tidak duplikasi kode
+            dgvClient_CellClick(sender, e);
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
