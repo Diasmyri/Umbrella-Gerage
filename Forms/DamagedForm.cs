@@ -24,7 +24,7 @@ namespace Umbrella_gerage.Forms
         {
             using (var db = new AppDbContext())
             {
-                dgvDamaged.DataSource = db.Damaged
+                dgvDamaged.DataSource = db.Damageds
                     .Select(d => new
                     {
                         d.PlateNumber,
@@ -127,7 +127,7 @@ namespace Umbrella_gerage.Forms
 
             using (var db = new AppDbContext())
             {
-                var existing = db.Damaged.FirstOrDefault(d => d.PlateNumber == txtPlatNomor.Text.Trim());
+                var existing = db.Damageds.FirstOrDefault(d => d.PlateNumber == txtPlatNomor.Text.Trim());
 
                 if (existing != null)
                 {
@@ -146,7 +146,7 @@ namespace Umbrella_gerage.Forms
 
                 };
 
-                db.Damaged.Add(newData);
+                db.Damageds.Add(newData);
                 db.SaveChanges();
             }
 
@@ -168,7 +168,7 @@ namespace Umbrella_gerage.Forms
 
             using (var db = new AppDbContext())
             {
-                var damaged = db.Damaged.FirstOrDefault(d => d.PlateNumber == selectedPlateNumber);
+                var damaged = db.Damageds.FirstOrDefault(d => d.PlateNumber == selectedPlateNumber);
                 if (damaged != null)
                 {
                     damaged.CarType = cmbTipeMobil.Text.Trim();
@@ -200,10 +200,10 @@ namespace Umbrella_gerage.Forms
             {
                 using (var db = new AppDbContext())
                 {
-                    var damaged = db.Damaged.FirstOrDefault(d => d.PlateNumber == selectedPlateNumber);
+                    var damaged = db.Damageds.FirstOrDefault(d => d.PlateNumber == selectedPlateNumber);
                     if (damaged != null)
                     {
-                        db.Damaged.Remove(damaged);
+                        db.Damageds.Remove(damaged);
                         db.SaveChanges();
                     }
                 }
