@@ -53,11 +53,11 @@
             // label1
             // 
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Soccer League", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.MenuHighlight;
             label1.Location = new Point(406, 26);
             label1.Name = "label1";
-            label1.Size = new Size(230, 55);
+            label1.Size = new Size(173, 28);
             label1.TabIndex = 2;
             label1.Text = "PAYMENT";
             label1.UseMnemonic = false;
