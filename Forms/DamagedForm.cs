@@ -142,7 +142,8 @@ namespace Umbrella_gerage.Forms
                     CarType = cmbTipeMobil.Text.Trim(),
                     ServiceType = cmbTipeServis.Text.Trim(),
                     Description = txtDeskripsi.Text.Trim(),
-                    ReportDate = DateTime.SpecifyKind(dateReport.Value, DateTimeKind.Utc)
+                    ReportDate = DateTime.SpecifyKind(dateReport.Value, DateTimeKind.Unspecified)
+
                 };
 
                 db.Damageds.Add(newData);
