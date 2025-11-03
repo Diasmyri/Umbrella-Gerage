@@ -42,7 +42,7 @@
             btnAdd = new Button();
             btnUpdate = new Button();
             btnDelete = new Button();
-            cmbTipeServis = new ComboBox();
+            cmbPlatNumber = new ComboBox();
             label2 = new Label();
             label1 = new Label();
             label3 = new Label();
@@ -194,14 +194,14 @@
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
-            // cmbTipeServis
+            // cmbPlatNumber
             // 
-            cmbTipeServis.FormattingEnabled = true;
-            cmbTipeServis.Items.AddRange(new object[] { "Servis Kecil", "Servis Sedang", "Servis Besar" });
-            cmbTipeServis.Location = new Point(352, 198);
-            cmbTipeServis.Name = "cmbTipeServis";
-            cmbTipeServis.Size = new Size(300, 28);
-            cmbTipeServis.TabIndex = 19;
+            cmbPlatNumber.FormattingEnabled = true;
+            cmbPlatNumber.Items.AddRange(new object[] { "Servis Kecil", "Servis Sedang", "Servis Besar" });
+            cmbPlatNumber.Location = new Point(352, 198);
+            cmbPlatNumber.Name = "cmbPlatNumber";
+            cmbPlatNumber.Size = new Size(300, 28);
+            cmbPlatNumber.TabIndex = 19;
             // 
             // label2
             // 
@@ -222,7 +222,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1031, 580);
-            Controls.Add(cmbTipeServis);
+            Controls.Add(cmbPlatNumber);
             Controls.Add(label2);
             Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
@@ -257,7 +257,7 @@
         private Button btnAdd;
         private Button btnUpdate;
         private Button btnDelete;
-        private ComboBox cmbTipeServis;
+        private ComboBox cmbPlatNumber;
         private Label label2;
     }
 }
