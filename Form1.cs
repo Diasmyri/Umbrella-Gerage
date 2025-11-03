@@ -12,6 +12,8 @@ namespace Umbrella_gerage
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
+            MessageBox.Show("Selamat datang di Umbrella Garage!");
         }
 
         private void OpenChildForm(Form childForm)

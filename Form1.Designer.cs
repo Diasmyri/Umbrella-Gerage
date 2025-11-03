@@ -33,45 +33,42 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { clientToolStripMenuItem, damagedToolStripMenuItem, paymentToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(7, 3, 0, 3);
-            menuStrip1.Size = new Size(1087, 30);
+            menuStrip1.Size = new Size(951, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
             // clientToolStripMenuItem
             // 
             clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            clientToolStripMenuItem.Size = new Size(61, 24);
+            clientToolStripMenuItem.Size = new Size(50, 20);
             clientToolStripMenuItem.Text = "Client";
             clientToolStripMenuItem.Click += clientToolStripMenuItem_Click;
             // 
             // damagedToolStripMenuItem
             // 
             damagedToolStripMenuItem.Name = "damagedToolStripMenuItem";
-            damagedToolStripMenuItem.Size = new Size(89, 24);
+            damagedToolStripMenuItem.Size = new Size(70, 20);
             damagedToolStripMenuItem.Text = "Damaged";
             damagedToolStripMenuItem.Click += damagedToolStripMenuItem_Click;
             // 
             // paymentToolStripMenuItem
             // 
             paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
-            paymentToolStripMenuItem.Size = new Size(79, 24);
+            paymentToolStripMenuItem.Size = new Size(66, 20);
             paymentToolStripMenuItem.Text = "Payment";
             paymentToolStripMenuItem.Click += paymentToolStripMenuItem_Click;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(1087, 625);
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(951, 551);
             Controls.Add(menuStrip1);
             ForeColor = Color.Coral;
-            IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Umbrella Garage System";
             Load += Form1_Load;
