@@ -55,9 +55,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.MenuHighlight;
-            label1.Location = new Point(252, 22);
+            label1.Location = new Point(406, 26);
             label1.Name = "label1";
-            label1.Size = new Size(164, 41);
+            label1.Size = new Size(230, 55);
             label1.TabIndex = 2;
             label1.Text = "PAYMENT";
             label1.UseMnemonic = false;
@@ -67,9 +67,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Coral;
-            label3.Location = new Point(64, 128);
+            label3.Location = new Point(73, 171);
             label3.Name = "label3";
-            label3.Size = new Size(119, 20);
+            label3.Size = new Size(136, 27);
             label3.TabIndex = 6;
             label3.Text = "AMOUNT";
             label3.UseMnemonic = false;
@@ -79,9 +79,9 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Coral;
-            label4.Location = new Point(64, 162);
+            label4.Location = new Point(73, 216);
             label4.Name = "label4";
-            label4.Size = new Size(220, 20);
+            label4.Size = new Size(251, 27);
             label4.TabIndex = 7;
             label4.Text = "PAYMENT DATE";
             label4.UseMnemonic = false;
@@ -91,9 +91,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Coral;
-            label5.Location = new Point(64, 190);
+            label5.Location = new Point(73, 253);
             label5.Name = "label5";
-            label5.Size = new Size(111, 20);
+            label5.Size = new Size(127, 27);
             label5.TabIndex = 9;
             label5.Text = "METHOD";
             label5.UseMnemonic = false;
@@ -103,27 +103,27 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Coral;
-            label6.Location = new Point(64, 98);
+            label6.Location = new Point(73, 131);
             label6.Name = "label6";
-            label6.Size = new Size(172, 20);
+            label6.Size = new Size(197, 27);
             label6.TabIndex = 12;
             label6.Text = "CLIENT ID";
             label6.UseMnemonic = false;
             // 
             // txtAmount
             // 
-            txtAmount.Location = new Point(306, 128);
+            txtAmount.Location = new Point(350, 171);
+            txtAmount.Margin = new Padding(3, 4, 3, 4);
             txtAmount.Name = "txtAmount";
-            txtAmount.Size = new Size(263, 23);
+            txtAmount.Size = new Size(300, 27);
             txtAmount.TabIndex = 5;
             txtAmount.TextChanged += txtAmount_TextChanged;
             // 
             // datePayment
             // 
-            datePayment.Location = new Point(306, 160);
-            datePayment.Margin = new Padding(3, 2, 3, 2);
+            datePayment.Location = new Point(350, 213);
             datePayment.Name = "datePayment";
-            datePayment.Size = new Size(263, 23);
+            datePayment.Size = new Size(300, 27);
             datePayment.TabIndex = 8;
             datePayment.ValueChanged += datePayment_ValueChanged;
             // 
@@ -131,39 +131,37 @@
             // 
             comboMethod.FormattingEnabled = true;
             comboMethod.Items.AddRange(new object[] { "Dana", "Gopay" });
-            comboMethod.Location = new Point(306, 190);
-            comboMethod.Margin = new Padding(3, 2, 3, 2);
+            comboMethod.Location = new Point(350, 253);
             comboMethod.Name = "comboMethod";
-            comboMethod.Size = new Size(263, 23);
+            comboMethod.Size = new Size(300, 28);
             comboMethod.TabIndex = 10;
             comboMethod.SelectedIndexChanged += comboMethod_SelectedIndexChanged;
             // 
             // dataGridViewPayment
             // 
             dataGridViewPayment.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewPayment.Location = new Point(306, 256);
-            dataGridViewPayment.Margin = new Padding(3, 2, 3, 2);
+            dataGridViewPayment.Location = new Point(350, 329);
             dataGridViewPayment.Name = "dataGridViewPayment";
             dataGridViewPayment.RowHeadersWidth = 51;
-            dataGridViewPayment.Size = new Size(426, 154);
+            dataGridViewPayment.Size = new Size(487, 205);
             dataGridViewPayment.TabIndex = 13;
             dataGridViewPayment.CellContentClick += dataGridViewPayment_CellContentClick;
             // 
             // comboClientId
             // 
             comboClientId.FormattingEnabled = true;
-            comboClientId.Location = new Point(306, 97);
-            comboClientId.Margin = new Padding(3, 2, 3, 2);
+            comboClientId.Location = new Point(350, 129);
             comboClientId.Name = "comboClientId";
-            comboClientId.Size = new Size(263, 23);
+            comboClientId.Size = new Size(300, 28);
             comboClientId.TabIndex = 14;
             comboClientId.SelectedIndexChanged += comboClientId_SelectedIndexChanged;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(308, 218);
+            btnAdd.Location = new Point(352, 291);
+            btnAdd.Margin = new Padding(3, 4, 3, 4);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(75, 23);
+            btnAdd.Size = new Size(86, 31);
             btnAdd.TabIndex = 15;
             btnAdd.Text = "ADD";
             btnAdd.UseVisualStyleBackColor = true;
@@ -171,9 +169,10 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(401, 218);
+            btnUpdate.Location = new Point(458, 291);
+            btnUpdate.Margin = new Padding(3, 4, 3, 4);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(75, 23);
+            btnUpdate.Size = new Size(86, 31);
             btnUpdate.TabIndex = 16;
             btnUpdate.Text = "UPDATE";
             btnUpdate.UseVisualStyleBackColor = true;
@@ -181,9 +180,10 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(495, 218);
+            btnDelete.Location = new Point(566, 291);
+            btnDelete.Margin = new Padding(3, 4, 3, 4);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(75, 23);
+            btnDelete.Size = new Size(86, 31);
             btnDelete.TabIndex = 17;
             btnDelete.Text = "DELETE";
             btnDelete.UseVisualStyleBackColor = true;
@@ -191,11 +191,11 @@
             // 
             // PaymentForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(902, 435);
+            ClientSize = new Size(1031, 580);
             Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
             Controls.Add(btnAdd);
@@ -209,7 +209,6 @@
             Controls.Add(label3);
             Controls.Add(txtAmount);
             Controls.Add(label1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "PaymentForm";
             Text = "Payment";
             Load += PaymentForm_Load;

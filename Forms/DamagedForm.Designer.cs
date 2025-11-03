@@ -53,7 +53,7 @@
             label1.Location = new Point(228, 34);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(88, 20);
+            label1.Size = new Size(108, 26);
             label1.TabIndex = 0;
             label1.Text = "DAMAGED";
             // 
@@ -63,7 +63,7 @@
             label2.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(27, 84);
             label2.Name = "label2";
-            label2.Size = new Size(94, 19);
+            label2.Size = new Size(115, 24);
             label2.TabIndex = 1;
             label2.Text = "Plat Nomor";
             // 
@@ -73,7 +73,7 @@
             label3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.Location = new Point(27, 132);
             label3.Name = "label3";
-            label3.Size = new Size(87, 19);
+            label3.Size = new Size(108, 24);
             label3.TabIndex = 2;
             label3.Text = "Tipe Mobil";
             // 
@@ -83,7 +83,7 @@
             label4.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.Location = new Point(27, 176);
             label4.Name = "label4";
-            label4.Size = new Size(79, 20);
+            label4.Size = new Size(96, 24);
             label4.TabIndex = 3;
             label4.Text = "Tipe Servis";
             // 
@@ -93,7 +93,7 @@
             label5.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.Location = new Point(27, 218);
             label5.Name = "label5";
-            label5.Size = new Size(67, 20);
+            label5.Size = new Size(82, 24);
             label5.TabIndex = 4;
             label5.Text = "Deskripsi";
             // 
@@ -103,7 +103,7 @@
             label6.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.Location = new Point(27, 255);
             label6.Name = "label6";
-            label6.Size = new Size(102, 20);
+            label6.Size = new Size(125, 24);
             label6.TabIndex = 5;
             label6.Text = "Tanggal Servis";
             // 
@@ -111,14 +111,14 @@
             // 
             txtPlatNomor.Location = new Point(191, 84);
             txtPlatNomor.Name = "txtPlatNomor";
-            txtPlatNomor.Size = new Size(175, 27);
+            txtPlatNomor.Size = new Size(175, 32);
             txtPlatNomor.TabIndex = 6;
             // 
             // txtDeskripsi
             // 
             txtDeskripsi.Location = new Point(191, 214);
             txtDeskripsi.Name = "txtDeskripsi";
-            txtDeskripsi.Size = new Size(175, 27);
+            txtDeskripsi.Size = new Size(175, 32);
             txtDeskripsi.TabIndex = 7;
             // 
             // cmbTipeMobil
@@ -127,7 +127,7 @@
             cmbTipeMobil.Items.AddRange(new object[] { "Avanza", "Terios", "Xpander" });
             cmbTipeMobil.Location = new Point(191, 127);
             cmbTipeMobil.Name = "cmbTipeMobil";
-            cmbTipeMobil.Size = new Size(175, 28);
+            cmbTipeMobil.Size = new Size(175, 34);
             cmbTipeMobil.TabIndex = 8;
             // 
             // cmbTipeServis
@@ -136,7 +136,7 @@
             cmbTipeServis.Items.AddRange(new object[] { "Servis Kecil", "Servis Sedang", "Servis Besar" });
             cmbTipeServis.Location = new Point(191, 172);
             cmbTipeServis.Name = "cmbTipeServis";
-            cmbTipeServis.Size = new Size(175, 28);
+            cmbTipeServis.Size = new Size(175, 34);
             cmbTipeServis.TabIndex = 9;
             // 
             // dateReport
@@ -144,7 +144,7 @@
             dateReport.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dateReport.Location = new Point(191, 255);
             dateReport.Name = "dateReport";
-            dateReport.Size = new Size(284, 26);
+            dateReport.Size = new Size(284, 31);
             dateReport.TabIndex = 10;
             // 
             // btnSave
@@ -183,10 +183,10 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(311, 363);
+            label7.Location = new Point(311, 357);
             label7.Margin = new Padding(5, 0, 5, 0);
             label7.Name = "label7";
-            label7.Size = new Size(133, 20);
+            label7.Size = new Size(164, 26);
             label7.TabIndex = 14;
             label7.Text = "Data Damaged";
             // 
@@ -200,6 +200,7 @@
             dgvDamaged.MultiSelect = false;
             dgvDamaged.Name = "dgvDamaged";
             dgvDamaged.ReadOnly = true;
+            dgvDamaged.RowHeadersWidth = 51;
             dgvDamaged.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDamaged.Size = new Size(711, 185);
             dgvDamaged.TabIndex = 15;
@@ -207,7 +208,7 @@
             // 
             // DamagedForm
             // 
-            AutoScaleDimensions = new SizeF(11F, 20F);
+            AutoScaleDimensions = new SizeF(13F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(762, 595);
             Controls.Add(dgvDamaged);
