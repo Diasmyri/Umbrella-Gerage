@@ -240,7 +240,6 @@
         #endregion
 
         private TextBox txtName;
-        private Label label1;
         private TextBox txtEmail;
         private TextBox txtPhone;
         private TextBox txtAddress;

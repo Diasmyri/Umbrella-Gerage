@@ -24,7 +24,7 @@ namespace Umbrella_gerage.Forms
         {
             using (var db = new AppDbContext())
             {
-                dgvDamaged.DataSource = db.Damageds
+                dgvDamaged.DataSource = db.Damaged
                     .Select(d => new
                     {
                         d.PlateNumber,
@@ -119,7 +119,7 @@ namespace Umbrella_gerage.Forms
 
 
 
-        // ✅ Tombol SIMPAN
+        // 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateInput())
@@ -127,7 +127,7 @@ namespace Umbrella_gerage.Forms
 
             using (var db = new AppDbContext())
             {
-                var existing = db.Damageds.FirstOrDefault(d => d.PlateNumber == txtPlatNomor.Text.Trim());
+                var existing = db.Damaged.FirstOrDefault(d => d.PlateNumber == txtPlatNomor.Text.Trim());
 
                 if (existing != null)
                 {
@@ -145,7 +145,7 @@ namespace Umbrella_gerage.Forms
                     ReportDate = DateTime.SpecifyKind(dateReport.Value, DateTimeKind.Utc)
                 };
 
-                db.Damageds.Add(newData);
+                db.Damaged.Add(newData);
                 db.SaveChanges();
             }
 
@@ -167,7 +167,7 @@ namespace Umbrella_gerage.Forms
 
             using (var db = new AppDbContext())
             {
-                var damaged = db.Damageds.FirstOrDefault(d => d.PlateNumber == selectedPlateNumber);
+                var damaged = db.Damaged.FirstOrDefault(d => d.PlateNumber == selectedPlateNumber);
                 if (damaged != null)
                 {
                     damaged.CarType = cmbTipeMobil.Text.Trim();
@@ -199,10 +199,10 @@ namespace Umbrella_gerage.Forms
             {
                 using (var db = new AppDbContext())
                 {
-                    var damaged = db.Damageds.FirstOrDefault(d => d.PlateNumber == selectedPlateNumber);
+                    var damaged = db.Damaged.FirstOrDefault(d => d.PlateNumber == selectedPlateNumber);
                     if (damaged != null)
                     {
-                        db.Damageds.Remove(damaged);
+                        db.Damaged.Remove(damaged);
                         db.SaveChanges();
                     }
                 }

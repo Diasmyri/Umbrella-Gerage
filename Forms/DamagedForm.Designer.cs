@@ -68,9 +68,9 @@
             label2.ForeColor = Color.Coral;
             label2.Location = new Point(52, 87);
             label2.Name = "label2";
-            label2.Size = new Size(152, 24);
+            label2.Size = new Size(165, 24);
             label2.TabIndex = 1;
-            label2.Text = "PLAT NUMBER";
+            label2.Text = "PLATE NUMBER";
             // 
             // label3
             // 
