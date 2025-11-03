@@ -115,7 +115,7 @@
             // label6
             // 
             label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Soccer League", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Soccer League", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = SystemColors.MenuHighlight;
             label6.Location = new Point(586, 42);
             label6.Name = "label6";
