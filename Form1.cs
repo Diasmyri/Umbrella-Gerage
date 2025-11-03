@@ -12,7 +12,7 @@ namespace Umbrella_gerage
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+            this.WindowState = FormWindowState.Normal;
             MessageBox.Show("Selamat datang di Umbrella Garage!");
         }
 
@@ -26,7 +26,7 @@ namespace Umbrella_gerage
 
             // Tampilkan form baru dalam container
             childForm.MdiParent = this;
-            childForm.WindowState = FormWindowState.Maximized;
+            childForm.WindowState = FormWindowState.Minimized;
             childForm.Show();
         }
 
