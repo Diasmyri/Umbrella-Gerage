@@ -66,11 +66,11 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Coral;
-            label2.Location = new Point(53, 81);
+            label2.Location = new Point(52, 87);
             label2.Name = "label2";
-            label2.Size = new Size(115, 24);
+            label2.Size = new Size(152, 24);
             label2.TabIndex = 1;
-            label2.Text = "Plat Nomor";
+            label2.Text = "PLAT NUMBER";
             // 
             // label3
             // 
@@ -78,11 +78,11 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Coral;
-            label3.Location = new Point(53, 129);
+            label3.Location = new Point(53, 130);
             label3.Name = "label3";
-            label3.Size = new Size(108, 24);
+            label3.Size = new Size(109, 24);
             label3.TabIndex = 2;
-            label3.Text = "Tipe Mobil";
+            label3.Text = "CAR TYPE";
             // 
             // label4
             // 
@@ -90,11 +90,11 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Coral;
-            label4.Location = new Point(53, 173);
+            label4.Location = new Point(52, 175);
             label4.Name = "label4";
-            label4.Size = new Size(116, 24);
+            label4.Size = new Size(153, 24);
             label4.TabIndex = 3;
-            label4.Text = "Tipe Servis";
+            label4.Text = "SERVICE TYPE";
             // 
             // label5
             // 
@@ -102,11 +102,11 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Coral;
-            label5.Location = new Point(53, 215);
+            label5.Location = new Point(53, 217);
             label5.Name = "label5";
-            label5.Size = new Size(98, 24);
+            label5.Size = new Size(144, 24);
             label5.TabIndex = 4;
-            label5.Text = "Deskripsi";
+            label5.Text = "DESCRIPTION";
             // 
             // label6
             // 
@@ -114,11 +114,11 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Coral;
-            label6.Location = new Point(53, 252);
+            label6.Location = new Point(52, 259);
             label6.Name = "label6";
-            label6.Size = new Size(150, 24);
+            label6.Size = new Size(153, 24);
             label6.TabIndex = 5;
-            label6.Text = "Tanggal Servis";
+            label6.Text = "SERVICE DATE";
             // 
             // txtPlatNomor
             // 

@@ -198,9 +198,9 @@
             // 
             cmbPlatNumber.FormattingEnabled = true;
             cmbPlatNumber.Items.AddRange(new object[] { "Servis Kecil", "Servis Sedang", "Servis Besar" });
-            cmbPlatNumber.Location = new Point(352, 198);
+            cmbPlatNumber.Location = new Point(350, 198);
             cmbPlatNumber.Name = "cmbPlatNumber";
-            cmbPlatNumber.Size = new Size(300, 28);
+            cmbPlatNumber.Size = new Size(302, 28);
             cmbPlatNumber.TabIndex = 19;
             // 
             // label2
