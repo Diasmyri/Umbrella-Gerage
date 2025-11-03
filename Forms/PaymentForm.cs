@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using Umbrella_gerage.Data;
@@ -17,7 +18,14 @@ namespace Umbrella_gerage.Forms
             LoadComboBoxes();
         }
 
-        // ✅ Load semua data payment
+        // ✅ Load semua data saat form dibuka
+        private void PaymentForm_Load(object sender, EventArgs e)
+        {
+            LoadPaymentData();
+            LoadComboBoxes();
+        }
+
+        // ✅ Load data ke DataGridView
         private void LoadPaymentData()
         {
             using (var db = new AppDbContext())
@@ -26,7 +34,7 @@ namespace Umbrella_gerage.Forms
                     .Select(p => new
                     {
                         p.PaymentId,
-                        ClientName = p.Client.Name,
+                        Client = p.Client.Name,
                         p.Price,
                         p.Method,
                         p.PlatNumber,
@@ -40,62 +48,42 @@ namespace Umbrella_gerage.Forms
             ClearForm();
         }
 
-        // ✅ Isi combo box (client, plat, method)
+        // ✅ Load ComboBox
         private void LoadComboBoxes()
         {
             using (var db = new AppDbContext())
             {
-                cmbClientId.DataSource = db.Clients
+                // Client
+                var clients = db.Clients
                     .Select(c => new { c.ClientId, c.Name })
                     .ToList();
+                cmbClientId.DataSource = clients;
                 cmbClientId.DisplayMember = "Name";
                 cmbClientId.ValueMember = "ClientId";
                 cmbClientId.SelectedIndex = -1;
 
-                cmbPlatNumber.DataSource = db.Damageds
+                // Plat Number
+                var plats = db.Damageds
                     .Select(d => d.PlateNumber)
                     .Distinct()
                     .ToList();
+                cmbPlatNumber.DataSource = plats;
                 cmbPlatNumber.SelectedIndex = -1;
             }
 
+            // Payment Methods
             cmbMethod.Items.Clear();
-            cmbMethod.Items.AddRange(new string[]
+            cmbMethod.Items.AddRange(new object[]
             {
                 "Cash", "Transfer", "Credit Card", "E-Wallet"
             });
             cmbMethod.SelectedIndex = -1;
         }
 
-        // ✅ Kosongkan form input
-        private void ClearForm()
-        {
-            cmbClientId.SelectedIndex = -1;
-            txtPrice.Clear();
-            cmbMethod.SelectedIndex = -1;
-            cmbPlatNumber.SelectedIndex = -1;
-            datePayment.Value = DateTime.Now;
-            selectedPaymentId = null;
-        }
-
-        // ✅ Klik baris → isi form otomatis
-        private void dgvPayment_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                selectedPaymentId = Convert.ToInt32(dgvPayment.Rows[e.RowIndex].Cells["PaymentId"].Value);
-                cmbClientId.Text = dgvPayment.Rows[e.RowIndex].Cells["ClientName"].Value?.ToString();
-                txtPrice.Text = dgvPayment.Rows[e.RowIndex].Cells["Price"].Value?.ToString();
-                cmbMethod.Text = dgvPayment.Rows[e.RowIndex].Cells["Method"].Value?.ToString();
-                cmbPlatNumber.Text = dgvPayment.Rows[e.RowIndex].Cells["PlatNumber"].Value?.ToString();
-                datePayment.Value = Convert.ToDateTime(dgvPayment.Rows[e.RowIndex].Cells["PaymentDate"].Value);
-            }
-        }
-
-        // ✅ Validasi input seperti DamagedForm
+        // ✅ Validasi Input seperti di DamagedForm
         private bool ValidateInput()
         {
-            if (cmbClientId.SelectedIndex == -1)
+            if (cmbClientId.SelectedValue == null)
             {
                 MessageBox.Show("Client wajib dipilih.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -110,24 +98,24 @@ namespace Umbrella_gerage.Forms
                 MessageBox.Show("Harga harus berupa angka.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(cmbMethod.Text))
+            if (cmbMethod.SelectedIndex == -1)
             {
                 MessageBox.Show("Metode pembayaran wajib dipilih.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(cmbPlatNumber.Text))
+            if (cmbPlatNumber.SelectedIndex == -1)
             {
                 MessageBox.Show("Plat nomor wajib dipilih.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-
             return true;
         }
 
         // ✅ Tombol SIMPAN
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!ValidateInput()) return;
+            if (!ValidateInput())
+                return;
 
             using (var db = new AppDbContext())
             {
@@ -137,7 +125,7 @@ namespace Umbrella_gerage.Forms
                     Price = decimal.Parse(txtPrice.Text.Trim()),
                     Method = cmbMethod.Text.Trim(),
                     PlatNumber = cmbPlatNumber.Text.Trim(),
-                    PaymentDate = DateTime.SpecifyKind(datePayment.Value, DateTimeKind.Unspecified)
+                    PaymentDate = datePayment.Value.ToUniversalTime() // ✅ fix timezone untuk PostgreSQL
                 };
 
                 db.Payments.Add(newPayment);
@@ -153,11 +141,12 @@ namespace Umbrella_gerage.Forms
         {
             if (selectedPaymentId == null)
             {
-                MessageBox.Show("Pilih data yang ingin diperbarui.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Silakan pilih data yang ingin diperbarui.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!ValidateInput()) return;
+            if (!ValidateInput())
+                return;
 
             using (var db = new AppDbContext())
             {
@@ -168,7 +157,7 @@ namespace Umbrella_gerage.Forms
                     payment.Price = decimal.Parse(txtPrice.Text.Trim());
                     payment.Method = cmbMethod.Text.Trim();
                     payment.PlatNumber = cmbPlatNumber.Text.Trim();
-                    payment.PaymentDate = DateTime.SpecifyKind(datePayment.Value, DateTimeKind.Unspecified);
+                    payment.PaymentDate = datePayment.Value.ToUniversalTime(); // ✅ tetap UTC
 
                     db.SaveChanges();
                 }
@@ -207,11 +196,49 @@ namespace Umbrella_gerage.Forms
             }
         }
 
-        // ✅ Saat form load ulang data
-        private void PaymentForm_Load(object sender, EventArgs e)
+        // ✅ Klik data grid → isi form
+        private void dgvPayment_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            LoadPaymentData();
-            LoadComboBoxes();
+            if (e.RowIndex >= 0)
+            {
+                var row = dgvPayment.Rows[e.RowIndex];
+                selectedPaymentId = Convert.ToInt32(row.Cells["PaymentId"].Value);
+
+                cmbClientId.Text = row.Cells["Client"].Value?.ToString();
+                txtPrice.Text = row.Cells["Price"].Value?.ToString();
+                cmbMethod.Text = row.Cells["Method"].Value?.ToString();
+                cmbPlatNumber.Text = row.Cells["PlatNumber"].Value?.ToString();
+
+                if (row.Cells["PaymentDate"].Value != null)
+                {
+                    datePayment.Value = Convert.ToDateTime(row.Cells["PaymentDate"].Value).ToLocalTime();
+                }
+            }
+        }
+
+        // ✅ Kosongkan input form
+        private void ClearForm()
+        {
+            cmbClientId.SelectedIndex = -1;
+            txtPrice.Clear();
+            cmbMethod.SelectedIndex = -1;
+            cmbPlatNumber.SelectedIndex = -1;
+            datePayment.Value = DateTime.Now;
+            selectedPaymentId = null;
+        }
+
+        // ✅ Utility untuk tampilkan error lengkap
+        private void ShowDetailedError(Exception ex)
+        {
+            string error = ex.Message;
+            if (ex.InnerException != null)
+            {
+                error += "\n\nInner Exception:\n" + ex.InnerException.Message;
+                if (ex.InnerException.InnerException != null)
+                    error += "\n\nRoot Cause:\n" + ex.InnerException.InnerException.Message;
+            }
+
+            MessageBox.Show(error, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
