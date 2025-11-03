@@ -79,7 +79,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Coral;
-            label4.Location = new Point(73, 216);
+            label4.Location = new Point(75, 260);
             label4.Name = "label4";
             label4.Size = new Size(251, 27);
             label4.TabIndex = 7;
@@ -91,7 +91,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Coral;
-            label5.Location = new Point(73, 253);
+            label5.Location = new Point(73, 216);
             label5.Name = "label5";
             label5.Size = new Size(127, 27);
             label5.TabIndex = 9;
@@ -121,7 +121,7 @@
             // 
             // datePayment
             // 
-            datePayment.Location = new Point(350, 213);
+            datePayment.Location = new Point(352, 257);
             datePayment.Name = "datePayment";
             datePayment.Size = new Size(300, 27);
             datePayment.TabIndex = 8;
@@ -131,7 +131,7 @@
             // 
             comboMethod.FormattingEnabled = true;
             comboMethod.Items.AddRange(new object[] { "Dana", "Gopay" });
-            comboMethod.Location = new Point(350, 253);
+            comboMethod.Location = new Point(350, 216);
             comboMethod.Name = "comboMethod";
             comboMethod.Size = new Size(300, 28);
             comboMethod.TabIndex = 10;
