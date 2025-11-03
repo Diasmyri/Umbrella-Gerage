@@ -42,6 +42,8 @@
             btnAdd = new Button();
             btnUpdate = new Button();
             btnDelete = new Button();
+            cmbPlatNumber = new ComboBox();
+            label2 = new Label();
             label1 = new Label();
             label3 = new Label();
             label4 = new Label();
@@ -67,7 +69,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Coral;
-            label3.Location = new Point(64, 128);
+            label3.Location = new Point(72, 130);
             label3.Name = "label3";
             label3.Size = new Size(119, 20);
             label3.TabIndex = 6;
@@ -79,7 +81,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Coral;
-            label4.Location = new Point(66, 195);
+            label4.Location = new Point(72, 232);
             label4.Name = "label4";
             label4.Size = new Size(220, 20);
             label4.TabIndex = 7;
@@ -91,7 +93,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Coral;
-            label5.Location = new Point(64, 162);
+            label5.Location = new Point(72, 165);
             label5.Name = "label5";
             label5.Size = new Size(111, 20);
             label5.TabIndex = 9;
@@ -103,7 +105,7 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Coral;
-            label6.Location = new Point(64, 98);
+            label6.Location = new Point(72, 96);
             label6.Name = "label6";
             label6.Size = new Size(172, 20);
             label6.TabIndex = 12;
@@ -112,7 +114,8 @@
             // 
             // txtAmount
             // 
-            txtAmount.Location = new Point(306, 128);
+            txtAmount.Location = new Point(350, 130);
+            txtAmount.Margin = new Padding(3, 4, 3, 4);
             txtAmount.Name = "txtAmount";
             txtAmount.Size = new Size(263, 23);
             txtAmount.TabIndex = 5;
@@ -120,8 +123,7 @@
             // 
             // datePayment
             // 
-            datePayment.Location = new Point(308, 193);
-            datePayment.Margin = new Padding(3, 2, 3, 2);
+            datePayment.Location = new Point(352, 232);
             datePayment.Name = "datePayment";
             datePayment.Size = new Size(263, 23);
             datePayment.TabIndex = 8;
@@ -131,8 +133,7 @@
             // 
             comboMethod.FormattingEnabled = true;
             comboMethod.Items.AddRange(new object[] { "Dana", "Gopay" });
-            comboMethod.Location = new Point(306, 162);
-            comboMethod.Margin = new Padding(3, 2, 3, 2);
+            comboMethod.Location = new Point(350, 164);
             comboMethod.Name = "comboMethod";
             comboMethod.Size = new Size(263, 23);
             comboMethod.TabIndex = 10;
@@ -152,8 +153,7 @@
             // comboClientId
             // 
             comboClientId.FormattingEnabled = true;
-            comboClientId.Location = new Point(306, 97);
-            comboClientId.Margin = new Padding(3, 2, 3, 2);
+            comboClientId.Location = new Point(350, 95);
             comboClientId.Name = "comboClientId";
             comboClientId.Size = new Size(263, 23);
             comboClientId.TabIndex = 14;
@@ -192,13 +192,36 @@
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
+            // cmbPlatNumber
+            // 
+            cmbPlatNumber.FormattingEnabled = true;
+            cmbPlatNumber.Items.AddRange(new object[] { "Servis Kecil", "Servis Sedang", "Servis Besar" });
+            cmbPlatNumber.Location = new Point(352, 198);
+            cmbPlatNumber.Name = "cmbPlatNumber";
+            cmbPlatNumber.Size = new Size(300, 28);
+            cmbPlatNumber.TabIndex = 19;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Coral;
+            label2.Location = new Point(72, 199);
+            label2.Name = "label2";
+            label2.Size = new Size(179, 27);
+            label2.TabIndex = 18;
+            label2.Text = "PLAT NUMBER";
+            // 
             // PaymentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(902, 435);
+            ClientSize = new Size(1031, 580);
+            Controls.Add(cmbPlatNumber);
+            Controls.Add(label2);
             Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
             Controls.Add(btnAdd);
@@ -233,5 +256,7 @@
         private Button btnAdd;
         private Button btnUpdate;
         private Button btnDelete;
+        private ComboBox cmbPlatNumber;
+        private Label label2;
     }
 }
