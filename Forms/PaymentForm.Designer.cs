@@ -65,7 +65,7 @@
             // label3
             // 
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Coral;
             label3.Location = new Point(73, 171);
             label3.Name = "label3";
@@ -77,7 +77,7 @@
             // label4
             // 
             label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Coral;
             label4.Location = new Point(73, 216);
             label4.Name = "label4";
@@ -89,7 +89,7 @@
             // label5
             // 
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Coral;
             label5.Location = new Point(73, 253);
             label5.Name = "label5";
@@ -101,7 +101,7 @@
             // label6
             // 
             label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Coral;
             label6.Location = new Point(73, 131);
             label6.Name = "label6";
@@ -158,6 +158,7 @@
             // 
             // btnAdd
             // 
+            btnAdd.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAdd.Location = new Point(352, 291);
             btnAdd.Margin = new Padding(3, 4, 3, 4);
             btnAdd.Name = "btnAdd";
@@ -169,6 +170,7 @@
             // 
             // btnUpdate
             // 
+            btnUpdate.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnUpdate.Location = new Point(458, 291);
             btnUpdate.Margin = new Padding(3, 4, 3, 4);
             btnUpdate.Name = "btnUpdate";
@@ -180,6 +182,7 @@
             // 
             // btnDelete
             // 
+            btnDelete.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDelete.Location = new Point(566, 291);
             btnDelete.Margin = new Padding(3, 4, 3, 4);
             btnDelete.Name = "btnDelete";

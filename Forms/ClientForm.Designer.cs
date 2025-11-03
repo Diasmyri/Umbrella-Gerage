@@ -55,11 +55,11 @@
             // label1
             // 
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Soccer League", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.MenuHighlight;
-            label1.Location = new Point(32, 45);
+            label1.Location = new Point(79, 45);
             label1.Name = "label1";
-            label1.Size = new Size(389, 53);
+            label1.Size = new Size(314, 30);
             label1.TabIndex = 1;
             label1.Text = "INPUT YOUR DATA";
             label1.UseMnemonic = false;
@@ -67,7 +67,7 @@
             // label2
             // 
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Coral;
             label2.Location = new Point(32, 140);
             label2.Name = "label2";
@@ -79,7 +79,7 @@
             // label3
             // 
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Coral;
             label3.Location = new Point(32, 195);
             label3.Name = "label3";
@@ -91,7 +91,7 @@
             // label4
             // 
             label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Coral;
             label4.Location = new Point(32, 252);
             label4.Name = "label4";
@@ -103,7 +103,7 @@
             // label5
             // 
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Coral;
             label5.Location = new Point(32, 313);
             label5.Name = "label5";
@@ -115,11 +115,11 @@
             // label6
             // 
             label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Soccer League", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = SystemColors.MenuHighlight;
-            label6.Location = new Point(630, 45);
+            label6.Location = new Point(586, 42);
             label6.Name = "label6";
-            label6.Size = new Size(223, 60);
+            label6.Size = new Size(215, 33);
             label6.TabIndex = 13;
             label6.Text = "LIST PANEL";
             label6.UseMnemonic = false;
@@ -160,7 +160,7 @@
             // 
             // btnSave
             // 
-            btnSave.Font = new Font("Microsoft Sans Serif", 10.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSave.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSave.Location = new Point(32, 419);
             btnSave.Margin = new Padding(3, 4, 3, 4);
             btnSave.Name = "btnSave";
@@ -185,7 +185,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Font = new Font("Microsoft Sans Serif", 10.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUpdate.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnUpdate.Location = new Point(144, 419);
             btnUpdate.Margin = new Padding(3, 4, 3, 4);
             btnUpdate.Name = "btnUpdate";
@@ -197,7 +197,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Font = new Font("Microsoft Sans Serif", 10.1999989F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDelete.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDelete.Location = new Point(256, 419);
             btnDelete.Margin = new Padding(3, 4, 3, 4);
             btnDelete.Name = "btnDelete";
