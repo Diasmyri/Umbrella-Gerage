@@ -8,210 +8,210 @@ namespace Umbrella_gerage.Forms
 {
     public partial class PaymentForm : Form
     {
-        private readonly AppDbContext _context;
+        private int? selectedPaymentId = null;
 
         public PaymentForm()
         {
             InitializeComponent();
-            _context = new AppDbContext();
+            LoadPaymentData();
+            LoadComboBoxes();
         }
 
-        // ===================== FORM LOAD =====================
-        private void PaymentForm_Load(object sender, EventArgs e)
+        // ✅ Load semua data payment
+        private void LoadPaymentData()
         {
-            LoadClients();
-            LoadPayments();
-            comboMethod.Items.Clear();
-            comboMethod.Items.Add("Dana");
-            comboMethod.Items.Add("Gopay");
-        }
-
-        // ===================== LOAD DATA =====================
-        private void LoadClients()
-        {
-            try
+            using (var db = new AppDbContext())
             {
-                comboClientId.DataSource = _context.Clients.ToList();
-                comboClientId.DisplayMember = "ClientId";   // tampilkan ID
-                comboClientId.ValueMember = "ClientId";
-                comboClientId.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading clients: " + ex.Message);
-            }
-        }
-
-        private void LoadPayments()
-        {
-            try
-            {
-                var payments = _context.Payments
+                dgvPayment.DataSource = db.Payments
                     .Select(p => new
                     {
                         p.PaymentId,
-                        p.ClientId,
-                        p.Amount,
-                        p.PaymentDate,
-                        p.Method
+                        ClientName = p.Client.Name,
+                        p.Price,
+                        p.Method,
+                        p.PlatNumber,
+                        p.PaymentDate
                     })
+                    .OrderByDescending(p => p.PaymentDate)
                     .ToList();
+            }
 
-                dataGridViewPayment.DataSource = payments;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading payments: " + ex.Message);
-            }
+            dgvPayment.ClearSelection();
+            ClearForm();
         }
 
+        // ✅ Isi combo box (client, plat, method)
+        private void LoadComboBoxes()
+        {
+            using (var db = new AppDbContext())
+            {
+                cmbClientId.DataSource = db.Clients
+                    .Select(c => new { c.ClientId, c.Name })
+                    .ToList();
+                cmbClientId.DisplayMember = "Name";
+                cmbClientId.ValueMember = "ClientId";
+                cmbClientId.SelectedIndex = -1;
+
+                cmbPlatNumber.DataSource = db.Damageds
+                    .Select(d => d.PlateNumber)
+                    .Distinct()
+                    .ToList();
+                cmbPlatNumber.SelectedIndex = -1;
+            }
+
+            cmbMethod.Items.Clear();
+            cmbMethod.Items.AddRange(new string[]
+            {
+                "Cash", "Transfer", "Credit Card", "E-Wallet"
+            });
+            cmbMethod.SelectedIndex = -1;
+        }
+
+        // ✅ Kosongkan form input
         private void ClearForm()
         {
-            comboClientId.SelectedIndex = -1;
-            txtAmount.Clear();
-            comboMethod.SelectedIndex = -1;
+            cmbClientId.SelectedIndex = -1;
+            txtPrice.Clear();
+            cmbMethod.SelectedIndex = -1;
+            cmbPlatNumber.SelectedIndex = -1;
             datePayment.Value = DateTime.Now;
+            selectedPaymentId = null;
         }
 
-        // ===================== EVENT HANDLERS =====================
-        private void comboClientId_SelectedIndexChanged(object sender, EventArgs e)
+        // ✅ Klik baris → isi form otomatis
+        private void dgvPayment_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Kosongkan (tidak wajib diisi)
-        }
-
-        private void txtAmount_TextChanged(object sender, EventArgs e)
-        {
-            if (!decimal.TryParse(txtAmount.Text, out _) && txtAmount.Text != "")
+            if (e.RowIndex >= 0)
             {
-                MessageBox.Show("Please enter a valid amount.", "Invalid Input");
-                txtAmount.Clear();
+                selectedPaymentId = Convert.ToInt32(dgvPayment.Rows[e.RowIndex].Cells["PaymentId"].Value);
+                cmbClientId.Text = dgvPayment.Rows[e.RowIndex].Cells["ClientName"].Value?.ToString();
+                txtPrice.Text = dgvPayment.Rows[e.RowIndex].Cells["Price"].Value?.ToString();
+                cmbMethod.Text = dgvPayment.Rows[e.RowIndex].Cells["Method"].Value?.ToString();
+                cmbPlatNumber.Text = dgvPayment.Rows[e.RowIndex].Cells["PlatNumber"].Value?.ToString();
+                datePayment.Value = Convert.ToDateTime(dgvPayment.Rows[e.RowIndex].Cells["PaymentDate"].Value);
             }
         }
 
-        private void datePayment_ValueChanged(object sender, EventArgs e)
+        // ✅ Validasi input seperti DamagedForm
+        private bool ValidateInput()
         {
-            // Tidak perlu isi apa-apa
-        }
-
-        private void comboMethod_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Tidak perlu isi apa-apa
-        }
-
-        private void dataGridViewPayment_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
+            if (cmbClientId.SelectedIndex == -1)
             {
-                if (e.RowIndex >= 0)
-                {
-                    DataGridViewRow row = dataGridViewPayment.Rows[e.RowIndex];
-                    comboClientId.SelectedValue = row.Cells["ClientId"].Value;
-                    txtAmount.Text = row.Cells["Amount"].Value.ToString();
-                    datePayment.Value = Convert.ToDateTime(row.Cells["PaymentDate"].Value);
-                    comboMethod.Text = row.Cells["Method"].Value.ToString();
-                }
+                MessageBox.Show("Client wajib dipilih.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
-            catch (Exception ex)
+            if (string.IsNullOrWhiteSpace(txtPrice.Text))
             {
-                MessageBox.Show("Error selecting row: " + ex.Message);
+                MessageBox.Show("Harga wajib diisi.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
+            if (!decimal.TryParse(txtPrice.Text, out _))
+            {
+                MessageBox.Show("Harga harus berupa angka.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(cmbMethod.Text))
+            {
+                MessageBox.Show("Metode pembayaran wajib dipilih.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(cmbPlatNumber.Text))
+            {
+                MessageBox.Show("Plat nomor wajib dipilih.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
         }
 
-        // ===================== BUTTON ACTIONS =====================
-
-        private void btnAdd_Click(object sender, EventArgs e)
+        // ✅ Tombol SIMPAN
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (comboClientId.SelectedValue == null ||
-                    string.IsNullOrEmpty(txtAmount.Text) ||
-                    comboMethod.SelectedIndex == -1)
-                {
-                    MessageBox.Show("Please fill all fields.");
-                    return;
-                }
+            if (!ValidateInput()) return;
 
-                var payment = new Payment
+            using (var db = new AppDbContext())
+            {
+                var newPayment = new Payment
                 {
-                    ClientId = (int)comboClientId.SelectedValue,
-                    Amount = decimal.Parse(txtAmount.Text),
-                    PaymentDate = datePayment.Value,
-                    Method = comboMethod.Text
+                    ClientId = (int)cmbClientId.SelectedValue,
+                    Price = decimal.Parse(txtPrice.Text.Trim()),
+                    Method = cmbMethod.Text.Trim(),
+                    PlatNumber = cmbPlatNumber.Text.Trim(),
+                    PaymentDate = DateTime.SpecifyKind(datePayment.Value, DateTimeKind.Unspecified)
                 };
 
-                _context.Payments.Add(payment);
-                _context.SaveChanges();
+                db.Payments.Add(newPayment);
+                db.SaveChanges();
+            }
 
-                MessageBox.Show("Payment added successfully!");
-                LoadPayments();
-                ClearForm();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error adding payment: " + ex.Message);
-            }
+            LoadPaymentData();
+            MessageBox.Show("Data pembayaran berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        // ✅ Tombol UPDATE
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            try
+            if (selectedPaymentId == null)
             {
-                if (dataGridViewPayment.SelectedRows.Count == 0)
-                {
-                    MessageBox.Show("Please select a payment to update.");
-                    return;
-                }
+                MessageBox.Show("Pilih data yang ingin diperbarui.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                int id = Convert.ToInt32(dataGridViewPayment.SelectedRows[0].Cells["PaymentId"].Value);
-                var payment = _context.Payments.FirstOrDefault(p => p.PaymentId == id);
+            if (!ValidateInput()) return;
 
+            using (var db = new AppDbContext())
+            {
+                var payment = db.Payments.FirstOrDefault(p => p.PaymentId == selectedPaymentId);
                 if (payment != null)
                 {
-                    payment.ClientId = (int)comboClientId.SelectedValue;
-                    payment.Amount = decimal.Parse(txtAmount.Text);
-                    payment.PaymentDate = datePayment.Value;
-                    payment.Method = comboMethod.Text;
+                    payment.ClientId = (int)cmbClientId.SelectedValue;
+                    payment.Price = decimal.Parse(txtPrice.Text.Trim());
+                    payment.Method = cmbMethod.Text.Trim();
+                    payment.PlatNumber = cmbPlatNumber.Text.Trim();
+                    payment.PaymentDate = DateTime.SpecifyKind(datePayment.Value, DateTimeKind.Unspecified);
 
-                    _context.SaveChanges();
-
-                    MessageBox.Show("Payment updated successfully!");
-                    LoadPayments();
-                    ClearForm();
+                    db.SaveChanges();
                 }
             }
-            catch (Exception ex)
+
+            LoadPaymentData();
+            MessageBox.Show("Data pembayaran berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // ✅ Tombol DELETE
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (selectedPaymentId == null)
             {
-                MessageBox.Show("Error updating payment: " + ex.Message);
+                MessageBox.Show("Pilih data yang ingin dihapus.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var confirm = MessageBox.Show("Apakah Anda yakin ingin menghapus data ini?",
+                "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                using (var db = new AppDbContext())
+                {
+                    var payment = db.Payments.FirstOrDefault(p => p.PaymentId == selectedPaymentId);
+                    if (payment != null)
+                    {
+                        db.Payments.Remove(payment);
+                        db.SaveChanges();
+                    }
+                }
+
+                LoadPaymentData();
+                MessageBox.Show("Data pembayaran berhasil dihapus!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        // ✅ Saat form load ulang data
+        private void PaymentForm_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (dataGridViewPayment.SelectedRows.Count == 0)
-                {
-                    MessageBox.Show("Please select a payment to delete.");
-                    return;
-                }
-
-                int id = Convert.ToInt32(dataGridViewPayment.SelectedRows[0].Cells["PaymentId"].Value);
-                var payment = _context.Payments.FirstOrDefault(p => p.PaymentId == id);
-
-                if (payment != null)
-                {
-                    _context.Payments.Remove(payment);
-                    _context.SaveChanges();
-
-                    MessageBox.Show("Payment deleted successfully!");
-                    LoadPayments();
-                    ClearForm();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error deleting payment: " + ex.Message);
-            }
+            LoadPaymentData();
+            LoadComboBoxes();
         }
     }
 }

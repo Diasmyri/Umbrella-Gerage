@@ -44,12 +44,5 @@ namespace Umbrella_gerage
         {
             OpenChildForm(new PaymentForm());
         }
-
-        private void btnBook_Click(object sender, EventArgs e)
-        {
-            ClientForm clientForm = new ClientForm();
-            clientForm.Show();   // tampilkan ClientForm
-            this.Hide();
-        }
     }
 }
