@@ -64,7 +64,6 @@
             label1.TabIndex = 1;
             label1.Text = "INPUT YOUR DATA";
             label1.UseMnemonic = false;
-            label1.Click += label1_Click;
             // 
             // label2
             // 

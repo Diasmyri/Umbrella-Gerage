@@ -24,7 +24,7 @@ namespace Umbrella_gerage.Forms
             LoadComboBoxes();
         }
 
-        // ✅ Menampilkan data ke DataGridView
+        //  Menampilkan data ke DataGridView
         private void LoadDamagedData()
         {
             using (var db = new AppDbContext())
@@ -46,7 +46,7 @@ namespace Umbrella_gerage.Forms
             ClearForm();
         }
 
-        // ✅ Isi pilihan ComboBox
+        //  Isi pilihan ComboBox
         private void LoadComboBoxes()
         {
             cmbTipeMobil.Items.Clear();
@@ -62,7 +62,7 @@ namespace Umbrella_gerage.Forms
             });
         }
 
-        // ✅ Validasi input sebelum simpan/update
+        //  Validasi input sebelum simpan/update
         private bool ValidateInput()
         {
             if (string.IsNullOrWhiteSpace(txtPlatNomor.Text))
@@ -86,26 +86,21 @@ namespace Umbrella_gerage.Forms
                 return false;
             }
 
-            // ✅ Validasi tanggal — hanya boleh hari ini atau besok
+            // 🔹 Validasi tanggal — hanya kemarin yang tidak boleh
             DateTime selectedDate = dateReport.Value.Date;
             DateTime today = DateTime.Now.Date;
-            DateTime tomorrow = today.AddDays(1);
 
             if (selectedDate < today)
             {
-                MessageBox.Show("Tanggal laporan tidak boleh sebelum hari ini.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (selectedDate > tomorrow)
-            {
-                MessageBox.Show("Tanggal laporan hanya boleh hari ini atau besok.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Tanggal laporan tidak boleh kemarin.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             return true;
+
         }
 
-        // ✅ Klik DataGridView → isi form
+        //  Klik DataGridView → isi form
         private void dgvDamaged_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -125,7 +120,7 @@ namespace Umbrella_gerage.Forms
             }
         }
 
-        // ✅ Tombol SIMPAN
+        //  Tombol SIMPAN
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateInput())
@@ -138,7 +133,7 @@ namespace Umbrella_gerage.Forms
 
                 if (existing != null)
                 {
-                    MessageBox.Show("Plat nomor sudah terdaftar. Gunakan UPDATE untuk mengubah data.",
+                    MessageBox.Show("Plat nomor sudah terdaftar.",
                         "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -160,7 +155,7 @@ namespace Umbrella_gerage.Forms
             MessageBox.Show("Data berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // ✅ Tombol UPDATE
+        //  Tombol UPDATE
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (selectedPlateNumber == null)
@@ -190,7 +185,7 @@ namespace Umbrella_gerage.Forms
             MessageBox.Show("Data berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // ✅ Tombol DELETE
+        //  Tombol DELETE
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (selectedPlateNumber == null)
@@ -219,7 +214,7 @@ namespace Umbrella_gerage.Forms
             }
         }
 
-        // ✅ Kosongkan input form
+        //  Kosongkan input form
         private void ClearForm()
         {
             txtPlatNomor.Clear();

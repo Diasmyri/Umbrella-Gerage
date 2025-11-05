@@ -24,7 +24,7 @@ namespace Umbrella_gerage.Forms
             LoadComboBoxes();
         }
 
-        // ✅ Load semua data ke DataGridView
+        // Load semua data ke DataGridView
         private void LoadPaymentData()
         {
             using (var db = new AppDbContext())
@@ -47,7 +47,7 @@ namespace Umbrella_gerage.Forms
             ClearForm();
         }
 
-        // ✅ Load ComboBox Client dan Plat
+        // Load ComboBox Client dan Plat
         private void LoadComboBoxes()
         {
             using (var db = new AppDbContext())
@@ -79,7 +79,7 @@ namespace Umbrella_gerage.Forms
             cmbMethod.SelectedIndex = -1;
         }
 
-        // ✅ Validasi Input
+        // Validasi Input
         private bool ValidateInput()
         {
             if (cmbClientId.SelectedValue == null)
@@ -123,7 +123,7 @@ namespace Umbrella_gerage.Forms
             return true;
         }
 
-        // ✅ Tombol SIMPAN
+        //  Tombol SIMPAN
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateInput())
@@ -134,7 +134,7 @@ namespace Umbrella_gerage.Forms
                 int clientId = (int)cmbClientId.SelectedValue;
                 string plat = cmbPlatNumber.Text.Trim();
 
-                // 🔍 Cek apakah sudah ada data pembayaran Client + Plat sama
+                //  Cek apakah sudah ada data pembayaran Client + Plat sama
                 var existing = db.Payments.FirstOrDefault(p => p.ClientId == clientId && p.PlatNumber == plat);
 
                 if (existing != null)
@@ -161,7 +161,7 @@ namespace Umbrella_gerage.Forms
             MessageBox.Show("Data pembayaran berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // ✅ Tombol UPDATE
+        //  Tombol UPDATE
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (selectedPaymentId == null)
@@ -192,7 +192,7 @@ namespace Umbrella_gerage.Forms
             MessageBox.Show("Data pembayaran berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // ✅ Tombol DELETE
+        // Tombol DELETE
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (selectedPaymentId == null)
@@ -221,7 +221,7 @@ namespace Umbrella_gerage.Forms
             }
         }
 
-        // ✅ Klik baris DataGridView → isi form
+        // Klik baris DataGridView → isi form
         private void dgvPayment_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -239,7 +239,7 @@ namespace Umbrella_gerage.Forms
             }
         }
 
-        // ✅ Bersihkan form
+        // Bersihkan form
         private void ClearForm()
         {
             cmbClientId.SelectedIndex = -1;
@@ -248,22 +248,6 @@ namespace Umbrella_gerage.Forms
             cmbPlatNumber.SelectedIndex = -1;
             datePayment.Value = DateTime.Now;
             selectedPaymentId = null;
-        }
-
-
-
-        // ✅ Tampilkan detail error
-        private void ShowDetailedError(Exception ex)
-        {
-            string error = ex.Message;
-            if (ex.InnerException != null)
-            {
-                error += "\n\nInner Exception:\n" + ex.InnerException.Message;
-                if (ex.InnerException.InnerException != null)
-                    error += "\n\nRoot Cause:\n" + ex.InnerException.InnerException.Message;
-            }
-
-            MessageBox.Show(error, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnClear_Click(object sender, EventArgs e)

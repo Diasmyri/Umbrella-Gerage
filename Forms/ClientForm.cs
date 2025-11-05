@@ -44,7 +44,7 @@ namespace Umbrella_gerage.Forms
             ClearForm();
         }
 
-        // ✅ Kosongkan form input
+        // Kosongkan form input
         private void ClearForm()
         {
             txtName.Clear();
@@ -56,10 +56,10 @@ namespace Umbrella_gerage.Forms
 
         private void dgvClient_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Kosong, untuk menghindari error di designer
+            
         }
 
-        // ✅ Isi form saat klik data di DataGridView
+        //  Isi form saat klik data di DataGridView
         private void dgvClient_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -72,7 +72,7 @@ namespace Umbrella_gerage.Forms
             }
         }
 
-        // ✅ Validasi input sebelum simpan/update
+        //  Validasi input sebelum simpan/update
         private bool ValidateInput()
         {
             if (string.IsNullOrWhiteSpace(txtName.Text))
@@ -109,7 +109,7 @@ namespace Umbrella_gerage.Forms
             return true;
         }
 
-        // ✅ Tombol SIMPAN
+        //  Tombol SIMPAN
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateInput())
@@ -123,7 +123,7 @@ namespace Umbrella_gerage.Forms
 
                 if (existing != null)
                 {
-                    MessageBox.Show("Email atau nomor telepon sudah terdaftar. Gunakan UPDATE untuk mengubah data.",
+                    MessageBox.Show("Email atau nomor telepon sudah terdaftar. Gunakan Email atau Nomor Telepon yang lain.",
                         "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -144,7 +144,7 @@ namespace Umbrella_gerage.Forms
             MessageBox.Show("Data berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // ✅ Tombol UPDATE
+        //  Tombol UPDATE
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (selectedClientId == -1)
@@ -165,7 +165,7 @@ namespace Umbrella_gerage.Forms
 
                 if (existingEmail != null || existingPhone != null)
                 {
-                    MessageBox.Show("Email atau nomor telepon sudah digunakan oleh klien lain.",
+                    MessageBox.Show("Email atau nomor telepon sudah digunakan.",
                         "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -187,7 +187,7 @@ namespace Umbrella_gerage.Forms
             LoadClientData();
         }
 
-        // ✅ Tombol DELETE
+        //  Tombol DELETE
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (selectedClientId == -1)
@@ -216,7 +216,7 @@ namespace Umbrella_gerage.Forms
             }
         }
 
-        // ✅ Tombol CLEAR
+        //  Tombol CLEAR
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearForm();
@@ -224,7 +224,7 @@ namespace Umbrella_gerage.Forms
 
         private void Client_Load(object sender, EventArgs e)
         {
-            // Kosong, biar designer gak error
+            
         }
 
         private void dgvClient_CellClick_1(object sender, DataGridViewCellEventArgs e)
@@ -232,8 +232,6 @@ namespace Umbrella_gerage.Forms
             dgvClient_CellClick(sender, e);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
+
     }
 }
