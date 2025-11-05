@@ -23,7 +23,7 @@ namespace Umbrella_gerage.Forms
             LoadClientData();
         }
 
-        // ✅ Fungsi untuk menampilkan semua data Client ke DataGridView
+        // ✅ Tampilkan semua data Client ke DataGridView
         private void LoadClientData()
         {
             using (var db = new AppDbContext())
@@ -44,7 +44,7 @@ namespace Umbrella_gerage.Forms
             ClearForm();
         }
 
-        // ✅ Fungsi untuk mengosongkan semua input form
+        // ✅ Kosongkan form input
         private void ClearForm()
         {
             txtName.Clear();
@@ -54,13 +54,12 @@ namespace Umbrella_gerage.Forms
             selectedClientId = -1;
         }
 
-        // ✅ Event kosong untuk menghindari error di Designer
         private void dgvClient_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Kosong, hanya untuk menghindari error binding di Designer
+            // Kosong, untuk menghindari error di designer
         }
 
-        // ✅ Saat user klik salah satu baris di DataGridView
+        // ✅ Isi form saat klik data di DataGridView
         private void dgvClient_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -86,9 +85,19 @@ namespace Umbrella_gerage.Forms
                 MessageBox.Show("Email wajib diisi.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            {
+                MessageBox.Show("Email tidak valid.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             if (string.IsNullOrWhiteSpace(txtPhone.Text))
             {
                 MessageBox.Show("Nomor telepon wajib diisi.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!txtPhone.Text.All(char.IsDigit))
+            {
+                MessageBox.Show("Nomor telepon hanya boleh berisi angka.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             if (string.IsNullOrWhiteSpace(txtAddress.Text))
@@ -100,8 +109,7 @@ namespace Umbrella_gerage.Forms
             return true;
         }
 
-
-        // ✅ Tombol SIMPAN (Tambah atau Update Otomatis)
+        // ✅ Tombol SIMPAN
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateInput())
@@ -109,29 +117,26 @@ namespace Umbrella_gerage.Forms
 
             using (var db = new AppDbContext())
             {
-                if (selectedClientId == -1)
+                // 🔍 Cek apakah email atau phone sudah terdaftar
+                var existing = db.Clients.FirstOrDefault(c =>
+                    c.Email == txtEmail.Text.Trim() || c.Phone == txtPhone.Text.Trim());
+
+                if (existing != null)
                 {
-                    var newClient = new Client
-                    {
-                        Name = txtName.Text.Trim(),
-                        Email = txtEmail.Text.Trim(),
-                        Phone = txtPhone.Text.Trim(),
-                        Address = txtAddress.Text.Trim()
-                    };
-                    db.Clients.Add(newClient);
-                }
-                else
-                {
-                    var existing = db.Clients.FirstOrDefault(c => c.ClientId == selectedClientId);
-                    if (existing != null)
-                    {
-                        existing.Name = txtName.Text.Trim();
-                        existing.Email = txtEmail.Text.Trim();
-                        existing.Phone = txtPhone.Text.Trim();
-                        existing.Address = txtAddress.Text.Trim();
-                    }
+                    MessageBox.Show("Email atau nomor telepon sudah terdaftar. Gunakan UPDATE untuk mengubah data.",
+                        "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
+                var newClient = new Client
+                {
+                    Name = txtName.Text.Trim(),
+                    Email = txtEmail.Text.Trim(),
+                    Phone = txtPhone.Text.Trim(),
+                    Address = txtAddress.Text.Trim()
+                };
+
+                db.Clients.Add(newClient);
                 db.SaveChanges();
             }
 
@@ -139,26 +144,32 @@ namespace Umbrella_gerage.Forms
             MessageBox.Show("Data berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-
-        // ✅ Tombol UPDATE (khusus untuk memperbarui data yang dipilih)
+        // ✅ Tombol UPDATE
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (selectedClientId == -1)
             {
-                MessageBox.Show("Silakan pilih data klien yang ingin diperbarui terlebih dahulu.",
-                    "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Silakan pilih data klien yang ingin diperbarui.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtName.Text))
-            {
-                MessageBox.Show("Nama wajib diisi.",
-                    "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (!ValidateInput())
                 return;
-            }
 
             using (var db = new AppDbContext())
             {
+                var existingEmail = db.Clients.FirstOrDefault(c =>
+                    c.Email == txtEmail.Text.Trim() && c.ClientId != selectedClientId);
+                var existingPhone = db.Clients.FirstOrDefault(c =>
+                    c.Phone == txtPhone.Text.Trim() && c.ClientId != selectedClientId);
+
+                if (existingEmail != null || existingPhone != null)
+                {
+                    MessageBox.Show("Email atau nomor telepon sudah digunakan oleh klien lain.",
+                        "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var client = db.Clients.FirstOrDefault(c => c.ClientId == selectedClientId);
                 if (client != null)
                 {
@@ -169,21 +180,14 @@ namespace Umbrella_gerage.Forms
 
                     db.SaveChanges();
 
-                    MessageBox.Show("Data klien berhasil diperbarui!",
-                        "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    LoadClientData();
-                    ClearForm();
-                }
-                else
-                {
-                    MessageBox.Show("Data klien tidak ditemukan di database.",
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Data klien berhasil diperbarui!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+
+            LoadClientData();
         }
 
-        // ✅ Tombol HAPUS
+        // ✅ Tombol DELETE
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (selectedClientId == -1)
@@ -212,23 +216,24 @@ namespace Umbrella_gerage.Forms
             }
         }
 
-        // ✅ Tombol CLEAR untuk mengosongkan form
+        // ✅ Tombol CLEAR
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearForm();
         }
 
-        // ✅ Event bawaan (tidak digunakan, tapi biar designer tidak error)
         private void Client_Load(object sender, EventArgs e)
         {
-            // Bisa dihapus event-nya dari Properties nanti jika tidak digunakan.
+            // Kosong, biar designer gak error
         }
 
         private void dgvClient_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            // Teruskan ke handler utama supaya tidak duplikasi kode
             dgvClient_CellClick(sender, e);
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

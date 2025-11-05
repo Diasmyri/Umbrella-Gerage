@@ -7,7 +7,6 @@ namespace Umbrella_gerage
         public Form1()
         {
             InitializeComponent();
-            this.IsMdiContainer = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -16,17 +15,19 @@ namespace Umbrella_gerage
             MessageBox.Show("Selamat datang di Umbrella Garage!");
         }
 
+        // ?? Fungsi untuk load form ke panel
         private void OpenChildForm(Form childForm)
         {
-            // Tutup semua form anak sebelumnya
-            foreach (Form form in this.MdiChildren)
-            {
-                form.Close();
-            }
+            // Bersihkan panel dulu
+            panelContent.Controls.Clear();
 
-            // Tampilkan form baru dalam container
-            childForm.MdiParent = this;
-            childForm.WindowState = FormWindowState.Minimized;
+            // Set form agar tampil di dalam panel
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+
+            // Tambahkan ke panel
+            panelContent.Controls.Add(childForm);
             childForm.Show();
         }
 

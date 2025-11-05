@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -19,7 +18,13 @@ namespace Umbrella_gerage.Forms
             LoadComboBoxes();
         }
 
-        // ✅ Menampilkan data kerusakan
+        private void DamagedForm_Load(object sender, EventArgs e)
+        {
+            LoadDamagedData();
+            LoadComboBoxes();
+        }
+
+        // ✅ Menampilkan data ke DataGridView
         private void LoadDamagedData()
         {
             using (var db = new AppDbContext())
@@ -33,6 +38,7 @@ namespace Umbrella_gerage.Forms
                         d.Description,
                         d.ReportDate
                     })
+                    .OrderByDescending(d => d.ReportDate)
                     .ToList();
             }
 
@@ -56,34 +62,6 @@ namespace Umbrella_gerage.Forms
             });
         }
 
-        // ✅ Kosongkan input form
-        private void ClearForm()
-        {
-            txtPlatNomor.Clear();
-            cmbTipeMobil.SelectedIndex = -1;
-            cmbTipeServis.SelectedIndex = -1;
-            txtDeskripsi.Clear();
-            dateReport.Value = DateTime.Now;
-            selectedPlateNumber = null;
-            txtPlatNomor.Enabled = true;
-        }
-
-        // ✅ Klik data grid untuk isi form
-        private void dgvDamaged_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                selectedPlateNumber = dgvDamaged.Rows[e.RowIndex].Cells["PlateNumber"].Value.ToString();
-                txtPlatNomor.Text = selectedPlateNumber;
-                cmbTipeMobil.Text = dgvDamaged.Rows[e.RowIndex].Cells["CarType"].Value?.ToString();
-                cmbTipeServis.Text = dgvDamaged.Rows[e.RowIndex].Cells["ServiceType"].Value?.ToString();
-                txtDeskripsi.Text = dgvDamaged.Rows[e.RowIndex].Cells["Description"].Value?.ToString();
-                dateReport.Value = Convert.ToDateTime(dgvDamaged.Rows[e.RowIndex].Cells["ReportDate"].Value);
-
-                txtPlatNomor.Enabled = false;
-            }
-        }
-
         // ✅ Validasi input sebelum simpan/update
         private bool ValidateInput()
         {
@@ -92,12 +70,12 @@ namespace Umbrella_gerage.Forms
                 MessageBox.Show("Plat Nomor wajib diisi.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(cmbTipeMobil.Text))
+            if (cmbTipeMobil.SelectedIndex == -1)
             {
                 MessageBox.Show("Tipe Mobil wajib dipilih.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(cmbTipeServis.Text))
+            if (cmbTipeServis.SelectedIndex == -1)
             {
                 MessageBox.Show("Tipe Servis wajib dipilih.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -108,18 +86,46 @@ namespace Umbrella_gerage.Forms
                 return false;
             }
 
+            // ✅ Validasi tanggal — hanya boleh hari ini atau besok
+            DateTime selectedDate = dateReport.Value.Date;
+            DateTime today = DateTime.Now.Date;
+            DateTime tomorrow = today.AddDays(1);
+
+            if (selectedDate < today)
+            {
+                MessageBox.Show("Tanggal laporan tidak boleh sebelum hari ini.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (selectedDate > tomorrow)
+            {
+                MessageBox.Show("Tanggal laporan hanya boleh hari ini atau besok.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             return true;
         }
 
-        private void DamagedForm_Load(object sender, EventArgs e)
+        // ✅ Klik DataGridView → isi form
+        private void dgvDamaged_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            LoadDamagedData();
-            LoadComboBoxes();
+            if (e.RowIndex >= 0)
+            {
+                var row = dgvDamaged.Rows[e.RowIndex];
+                selectedPlateNumber = row.Cells["PlateNumber"].Value?.ToString();
+
+                txtPlatNomor.Text = selectedPlateNumber;
+                cmbTipeMobil.Text = row.Cells["CarType"].Value?.ToString();
+                cmbTipeServis.Text = row.Cells["ServiceType"].Value?.ToString();
+                txtDeskripsi.Text = row.Cells["Description"].Value?.ToString();
+
+                if (row.Cells["ReportDate"].Value != null)
+                    dateReport.Value = Convert.ToDateTime(row.Cells["ReportDate"].Value);
+
+                txtPlatNomor.Enabled = false;
+            }
         }
 
-
-
-        // 
+        // ✅ Tombol SIMPAN
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateInput())
@@ -127,7 +133,8 @@ namespace Umbrella_gerage.Forms
 
             using (var db = new AppDbContext())
             {
-                var existing = db.Damageds.FirstOrDefault(d => d.PlateNumber == txtPlatNomor.Text.Trim());
+                string plate = txtPlatNomor.Text.Trim();
+                var existing = db.Damageds.FirstOrDefault(d => d.PlateNumber == plate);
 
                 if (existing != null)
                 {
@@ -138,12 +145,11 @@ namespace Umbrella_gerage.Forms
 
                 var newData = new Damaged
                 {
-                    PlateNumber = txtPlatNomor.Text.Trim(),
+                    PlateNumber = plate,
                     CarType = cmbTipeMobil.Text.Trim(),
                     ServiceType = cmbTipeServis.Text.Trim(),
                     Description = txtDeskripsi.Text.Trim(),
                     ReportDate = DateTime.SpecifyKind(dateReport.Value, DateTimeKind.Unspecified)
-
                 };
 
                 db.Damageds.Add(newData);
@@ -157,7 +163,7 @@ namespace Umbrella_gerage.Forms
         // ✅ Tombol UPDATE
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(selectedPlateNumber))
+            if (selectedPlateNumber == null)
             {
                 MessageBox.Show("Silakan pilih data yang ingin diperbarui.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -174,7 +180,7 @@ namespace Umbrella_gerage.Forms
                     damaged.CarType = cmbTipeMobil.Text.Trim();
                     damaged.ServiceType = cmbTipeServis.Text.Trim();
                     damaged.Description = txtDeskripsi.Text.Trim();
-                    damaged.ReportDate = DateTime.SpecifyKind(dateReport.Value, DateTimeKind.Utc);
+                    damaged.ReportDate = DateTime.SpecifyKind(dateReport.Value, DateTimeKind.Unspecified);
 
                     db.SaveChanges();
                 }
@@ -187,7 +193,7 @@ namespace Umbrella_gerage.Forms
         // ✅ Tombol DELETE
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(selectedPlateNumber))
+            if (selectedPlateNumber == null)
             {
                 MessageBox.Show("Pilih data yang ingin dihapus.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -211,6 +217,23 @@ namespace Umbrella_gerage.Forms
                 LoadDamagedData();
                 MessageBox.Show("Data berhasil dihapus!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        // ✅ Kosongkan input form
+        private void ClearForm()
+        {
+            txtPlatNomor.Clear();
+            cmbTipeMobil.SelectedIndex = -1;
+            cmbTipeServis.SelectedIndex = -1;
+            txtDeskripsi.Clear();
+            dateReport.Value = DateTime.Now;
+            selectedPlateNumber = null;
+            txtPlatNomor.Enabled = true;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearForm();
         }
     }
 }

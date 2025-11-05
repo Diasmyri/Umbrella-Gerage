@@ -44,6 +44,7 @@
             btnDelete = new Button();
             cmbPlatNumber = new ComboBox();
             label2 = new Label();
+            btnClear = new Button();
             label1 = new Label();
             label3 = new Label();
             label4 = new Label();
@@ -51,6 +52,66 @@
             label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvPayment).BeginInit();
             SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.MenuHighlight;
+            label1.Location = new Point(375, 28);
+            label1.Name = "label1";
+            label1.Size = new Size(199, 34);
+            label1.TabIndex = 2;
+            label1.Text = "PAYMENT";
+            label1.UseMnemonic = false;
+            // 
+            // label3
+            // 
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Coral;
+            label3.Location = new Point(72, 130);
+            label3.Name = "label3";
+            label3.Size = new Size(119, 20);
+            label3.TabIndex = 6;
+            label3.Text = "PRICE";
+            label3.UseMnemonic = false;
+            // 
+            // label4
+            // 
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Coral;
+            label4.Location = new Point(72, 232);
+            label4.Name = "label4";
+            label4.Size = new Size(220, 20);
+            label4.TabIndex = 7;
+            label4.Text = "PAYMENT DATE";
+            label4.UseMnemonic = false;
+            // 
+            // label5
+            // 
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Coral;
+            label5.Location = new Point(72, 165);
+            label5.Name = "label5";
+            label5.Size = new Size(111, 20);
+            label5.TabIndex = 9;
+            label5.Text = "METHOD";
+            label5.UseMnemonic = false;
+            // 
+            // label6
+            // 
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Coral;
+            label6.Location = new Point(72, 96);
+            label6.Name = "label6";
+            label6.Size = new Size(172, 20);
+            label6.TabIndex = 12;
+            label6.Text = "CLIENT ID";
+            label6.UseMnemonic = false;
             // 
             // txtPrice
             // 
@@ -148,65 +209,16 @@
             label2.TabIndex = 18;
             label2.Text = "PLAT NUMBER";
             // 
-            // label1
+            // btnClear
             // 
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = SystemColors.MenuHighlight;
-            label1.Location = new Point(375, 28);
-            label1.Name = "label1";
-            label1.Size = new Size(199, 34);
-            label1.TabIndex = 2;
-            label1.Text = "PAYMENT";
-            label1.UseMnemonic = false;
-            // 
-            // label3
-            // 
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Coral;
-            label3.Location = new Point(72, 130);
-            label3.Name = "label3";
-            label3.Size = new Size(119, 20);
-            label3.TabIndex = 6;
-            label3.Text = "PRICE";
-            label3.UseMnemonic = false;
-            // 
-            // label4
-            // 
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Coral;
-            label4.Location = new Point(72, 232);
-            label4.Name = "label4";
-            label4.Size = new Size(220, 20);
-            label4.TabIndex = 7;
-            label4.Text = "PAYMENT DATE";
-            label4.UseMnemonic = false;
-            // 
-            // label5
-            // 
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Coral;
-            label5.Location = new Point(72, 165);
-            label5.Name = "label5";
-            label5.Size = new Size(111, 20);
-            label5.TabIndex = 9;
-            label5.Text = "METHOD";
-            label5.UseMnemonic = false;
-            // 
-            // label6
-            // 
-            label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.Coral;
-            label6.Location = new Point(72, 96);
-            label6.Name = "label6";
-            label6.Size = new Size(172, 20);
-            label6.TabIndex = 12;
-            label6.Text = "CLIENT ID";
-            label6.UseMnemonic = false;
+            btnClear.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClear.Location = new Point(594, 274);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(75, 23);
+            btnClear.TabIndex = 20;
+            btnClear.Text = "CLEAR";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // PaymentForm
             // 
@@ -215,6 +227,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1031, 580);
+            Controls.Add(btnClear);
             Controls.Add(cmbPlatNumber);
             Controls.Add(label2);
             Controls.Add(btnDelete);
@@ -256,5 +269,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private Button btnClear;
     }
 }

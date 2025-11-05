@@ -18,14 +18,13 @@ namespace Umbrella_gerage.Forms
             LoadComboBoxes();
         }
 
-        // ✅ Load semua data saat form dibuka
         private void PaymentForm_Load(object sender, EventArgs e)
         {
             LoadPaymentData();
             LoadComboBoxes();
         }
 
-        // ✅ Load data ke DataGridView
+        // ✅ Load semua data ke DataGridView
         private void LoadPaymentData()
         {
             using (var db = new AppDbContext())
@@ -48,12 +47,12 @@ namespace Umbrella_gerage.Forms
             ClearForm();
         }
 
-        // ✅ Load ComboBox
+        // ✅ Load ComboBox Client dan Plat
         private void LoadComboBoxes()
         {
             using (var db = new AppDbContext())
             {
-                // Client
+                // 🔹 Client
                 var clients = db.Clients
                     .Select(c => new { c.ClientId, c.Name })
                     .ToList();
@@ -62,7 +61,7 @@ namespace Umbrella_gerage.Forms
                 cmbClientId.ValueMember = "ClientId";
                 cmbClientId.SelectedIndex = -1;
 
-                // Plat Number
+                // 🔹 Plat Number
                 var plats = db.Damageds
                     .Select(d => d.PlateNumber)
                     .Distinct()
@@ -71,16 +70,16 @@ namespace Umbrella_gerage.Forms
                 cmbPlatNumber.SelectedIndex = -1;
             }
 
-            // Payment Methods
+            // 🔹 Payment Method
             cmbMethod.Items.Clear();
-            cmbMethod.Items.AddRange(new object[]
+            cmbMethod.Items.AddRange(new string[]
             {
                 "Cash", "Transfer", "Credit Card", "E-Wallet"
             });
             cmbMethod.SelectedIndex = -1;
         }
 
-        // ✅ Validasi Input seperti di DamagedForm
+        // ✅ Validasi Input
         private bool ValidateInput()
         {
             if (cmbClientId.SelectedValue == null)
@@ -88,26 +87,39 @@ namespace Umbrella_gerage.Forms
                 MessageBox.Show("Client wajib dipilih.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+
             if (string.IsNullOrWhiteSpace(txtPrice.Text))
             {
                 MessageBox.Show("Harga wajib diisi.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+
             if (!decimal.TryParse(txtPrice.Text, out _))
             {
                 MessageBox.Show("Harga harus berupa angka.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+
             if (cmbMethod.SelectedIndex == -1)
             {
                 MessageBox.Show("Metode pembayaran wajib dipilih.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+
             if (cmbPlatNumber.SelectedIndex == -1)
             {
                 MessageBox.Show("Plat nomor wajib dipilih.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+
+            // 🔹 Validasi tanggal tidak boleh sebelum hari ini
+            if (datePayment.Value.Date < DateTime.Now.Date)
+            {
+                MessageBox.Show("Tanggal pembayaran tidak boleh sebelum hari ini.",
+                    "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             return true;
         }
 
@@ -119,13 +131,26 @@ namespace Umbrella_gerage.Forms
 
             using (var db = new AppDbContext())
             {
+                int clientId = (int)cmbClientId.SelectedValue;
+                string plat = cmbPlatNumber.Text.Trim();
+
+                // 🔍 Cek apakah sudah ada data pembayaran Client + Plat sama
+                var existing = db.Payments.FirstOrDefault(p => p.ClientId == clientId && p.PlatNumber == plat);
+
+                if (existing != null)
+                {
+                    MessageBox.Show("Data pembayaran untuk client dan plat ini sudah ada.\nGunakan UPDATE untuk mengubah data.",
+                        "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var newPayment = new Payment
                 {
-                    ClientId = (int)cmbClientId.SelectedValue,
+                    ClientId = clientId,
                     Price = decimal.Parse(txtPrice.Text.Trim()),
                     Method = cmbMethod.Text.Trim(),
-                    PlatNumber = cmbPlatNumber.Text.Trim(),
-                    PaymentDate = datePayment.Value.ToUniversalTime() // ✅ fix timezone untuk PostgreSQL
+                    PlatNumber = plat,
+                    PaymentDate = datePayment.Value.ToUniversalTime()
                 };
 
                 db.Payments.Add(newPayment);
@@ -157,7 +182,7 @@ namespace Umbrella_gerage.Forms
                     payment.Price = decimal.Parse(txtPrice.Text.Trim());
                     payment.Method = cmbMethod.Text.Trim();
                     payment.PlatNumber = cmbPlatNumber.Text.Trim();
-                    payment.PaymentDate = datePayment.Value.ToUniversalTime(); // ✅ tetap UTC
+                    payment.PaymentDate = datePayment.Value.ToUniversalTime();
 
                     db.SaveChanges();
                 }
@@ -196,7 +221,7 @@ namespace Umbrella_gerage.Forms
             }
         }
 
-        // ✅ Klik data grid → isi form
+        // ✅ Klik baris DataGridView → isi form
         private void dgvPayment_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -210,13 +235,11 @@ namespace Umbrella_gerage.Forms
                 cmbPlatNumber.Text = row.Cells["PlatNumber"].Value?.ToString();
 
                 if (row.Cells["PaymentDate"].Value != null)
-                {
                     datePayment.Value = Convert.ToDateTime(row.Cells["PaymentDate"].Value).ToLocalTime();
-                }
             }
         }
 
-        // ✅ Kosongkan input form
+        // ✅ Bersihkan form
         private void ClearForm()
         {
             cmbClientId.SelectedIndex = -1;
@@ -227,7 +250,9 @@ namespace Umbrella_gerage.Forms
             selectedPaymentId = null;
         }
 
-        // ✅ Utility untuk tampilkan error lengkap
+
+
+        // ✅ Tampilkan detail error
         private void ShowDetailedError(Exception ex)
         {
             string error = ex.Message;
@@ -239,6 +264,11 @@ namespace Umbrella_gerage.Forms
             }
 
             MessageBox.Show(error, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearForm();
         }
     }
 }
