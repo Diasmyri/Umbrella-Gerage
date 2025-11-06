@@ -34,7 +34,6 @@
             Label label4;
             Label label5;
             Label label6;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientForm));
             txtName = new TextBox();
             txtEmail = new TextBox();
             txtPhone = new TextBox();
@@ -56,11 +55,11 @@
             // label1
             // 
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Soccer League", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.MenuHighlight;
-            label1.Location = new Point(69, 34);
+            label1.Location = new Point(79, 45);
             label1.Name = "label1";
-            label1.Size = new Size(275, 36);
+            label1.Size = new Size(332, 39);
             label1.TabIndex = 1;
             label1.Text = "INPUT YOUR DATA";
             label1.UseMnemonic = false;
@@ -70,9 +69,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Coral;
-            label2.Location = new Point(28, 105);
+            label2.Location = new Point(32, 140);
             label2.Name = "label2";
-            label2.Size = new Size(93, 23);
+            label2.Size = new Size(106, 31);
             label2.TabIndex = 2;
             label2.Text = "NAME";
             label2.UseMnemonic = false;
@@ -82,9 +81,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Coral;
-            label3.Location = new Point(28, 146);
+            label3.Location = new Point(32, 195);
             label3.Name = "label3";
-            label3.Size = new Size(105, 27);
+            label3.Size = new Size(120, 36);
             label3.TabIndex = 6;
             label3.Text = "EMAIL";
             label3.UseMnemonic = false;
@@ -94,9 +93,9 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Coral;
-            label4.Location = new Point(28, 189);
+            label4.Location = new Point(32, 252);
             label4.Name = "label4";
-            label4.Size = new Size(93, 20);
+            label4.Size = new Size(106, 27);
             label4.TabIndex = 6;
             label4.Text = "PHONE";
             label4.UseMnemonic = false;
@@ -106,9 +105,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Coral;
-            label5.Location = new Point(28, 235);
+            label5.Location = new Point(32, 313);
             label5.Name = "label5";
-            label5.Size = new Size(130, 22);
+            label5.Size = new Size(149, 29);
             label5.TabIndex = 8;
             label5.Text = "ADDRESS";
             label5.UseMnemonic = false;
@@ -116,51 +115,56 @@
             // label6
             // 
             label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Soccer League", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = SystemColors.MenuHighlight;
-            label6.Location = new Point(513, 32);
+            label6.Location = new Point(586, 45);
             label6.Name = "label6";
-            label6.Size = new Size(188, 38);
+            label6.Size = new Size(201, 33);
             label6.TabIndex = 13;
             label6.Text = "LIST PANEL";
             label6.UseMnemonic = false;
             // 
             // txtName
             // 
-            txtName.Location = new Point(170, 105);
+            txtName.Location = new Point(194, 140);
+            txtName.Margin = new Padding(3, 4, 3, 4);
             txtName.Name = "txtName";
-            txtName.Size = new Size(190, 23);
+            txtName.Size = new Size(217, 27);
             txtName.TabIndex = 0;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(170, 146);
+            txtEmail.Location = new Point(194, 195);
+            txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(190, 23);
+            txtEmail.Size = new Size(217, 27);
             txtEmail.TabIndex = 3;
             // 
             // txtPhone
             // 
-            txtPhone.Location = new Point(170, 189);
+            txtPhone.Location = new Point(194, 252);
+            txtPhone.Margin = new Padding(3, 4, 3, 4);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(190, 23);
+            txtPhone.Size = new Size(217, 27);
             txtPhone.TabIndex = 5;
             // 
             // txtAddress
             // 
             txtAddress.AcceptsReturn = true;
-            txtAddress.Location = new Point(170, 235);
+            txtAddress.Location = new Point(194, 313);
+            txtAddress.Margin = new Padding(3, 4, 3, 4);
             txtAddress.Multiline = true;
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(190, 23);
+            txtAddress.Size = new Size(217, 29);
             txtAddress.TabIndex = 7;
             // 
             // btnSave
             // 
             btnSave.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSave.Location = new Point(12, 314);
+            btnSave.Location = new Point(14, 419);
+            btnSave.Margin = new Padding(3, 4, 3, 4);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(74, 30);
+            btnSave.Size = new Size(85, 40);
             btnSave.TabIndex = 9;
             btnSave.Text = "SAVE";
             btnSave.UseVisualStyleBackColor = true;
@@ -170,10 +174,11 @@
             // 
             dgvClient.BackgroundColor = Color.MintCream;
             dgvClient.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClient.Location = new Point(392, 105);
+            dgvClient.Location = new Point(448, 140);
+            dgvClient.Margin = new Padding(3, 4, 3, 4);
             dgvClient.Name = "dgvClient";
             dgvClient.RowHeadersWidth = 51;
-            dgvClient.Size = new Size(450, 239);
+            dgvClient.Size = new Size(514, 319);
             dgvClient.TabIndex = 12;
             dgvClient.CellClick += dgvClient_CellClick_1;
             dgvClient.CellContentClick += dgvClient_CellContentClick;
@@ -181,9 +186,10 @@
             // btnUpdate
             // 
             btnUpdate.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnUpdate.Location = new Point(92, 314);
+            btnUpdate.Location = new Point(105, 419);
+            btnUpdate.Margin = new Padding(3, 4, 3, 4);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(76, 30);
+            btnUpdate.Size = new Size(87, 40);
             btnUpdate.TabIndex = 14;
             btnUpdate.Text = "UPDATE";
             btnUpdate.UseVisualStyleBackColor = true;
@@ -192,9 +198,10 @@
             // btnDelete
             // 
             btnDelete.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDelete.Location = new Point(174, 314);
+            btnDelete.Location = new Point(199, 419);
+            btnDelete.Margin = new Padding(3, 4, 3, 4);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(76, 30);
+            btnDelete.Size = new Size(87, 40);
             btnDelete.TabIndex = 15;
             btnDelete.Text = "DELETE";
             btnDelete.UseVisualStyleBackColor = true;
@@ -203,9 +210,10 @@
             // btnClear
             // 
             btnClear.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnClear.Location = new Point(256, 314);
+            btnClear.Location = new Point(293, 419);
+            btnClear.Margin = new Padding(3, 4, 3, 4);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(78, 30);
+            btnClear.Size = new Size(89, 40);
             btnClear.TabIndex = 16;
             btnClear.Text = "CLEAR";
             btnClear.UseVisualStyleBackColor = true;
@@ -213,11 +221,11 @@
             // 
             // ClientForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackColor = SystemColors.Info;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(880, 433);
+            ClientSize = new Size(1006, 577);
             Controls.Add(btnClear);
             Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
@@ -233,7 +241,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(txtName);
-            Margin = new Padding(3, 4, 3, 4);
+            Margin = new Padding(3, 5, 3, 5);
             Name = "ClientForm";
             Text = "Client";
             Load += Client_Load;
