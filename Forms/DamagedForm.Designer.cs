@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -51,12 +53,12 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Soccer League", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Stencil", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.Highlight;
             label1.Location = new Point(324, 32);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(168, 32);
+            label1.Size = new Size(163, 38);
             label1.TabIndex = 0;
             label1.Text = "DAMAGED";
             // 
@@ -68,7 +70,7 @@
             label2.ForeColor = Color.Coral;
             label2.Location = new Point(52, 87);
             label2.Name = "label2";
-            label2.Size = new Size(165, 24);
+            label2.Size = new Size(137, 19);
             label2.TabIndex = 1;
             label2.Text = "PLATE NUMBER";
             // 
@@ -80,7 +82,7 @@
             label3.ForeColor = Color.Coral;
             label3.Location = new Point(53, 130);
             label3.Name = "label3";
-            label3.Size = new Size(109, 24);
+            label3.Size = new Size(90, 19);
             label3.TabIndex = 2;
             label3.Text = "CAR TYPE";
             // 
@@ -92,7 +94,7 @@
             label4.ForeColor = Color.Coral;
             label4.Location = new Point(52, 175);
             label4.Name = "label4";
-            label4.Size = new Size(153, 24);
+            label4.Size = new Size(127, 19);
             label4.TabIndex = 3;
             label4.Text = "SERVICE TYPE";
             // 
@@ -104,7 +106,7 @@
             label5.ForeColor = Color.Coral;
             label5.Location = new Point(53, 217);
             label5.Name = "label5";
-            label5.Size = new Size(144, 24);
+            label5.Size = new Size(120, 19);
             label5.TabIndex = 4;
             label5.Text = "DESCRIPTION";
             // 
@@ -116,53 +118,57 @@
             label6.ForeColor = Color.Coral;
             label6.Location = new Point(52, 259);
             label6.Name = "label6";
-            label6.Size = new Size(153, 24);
+            label6.Size = new Size(128, 19);
             label6.TabIndex = 5;
             label6.Text = "SERVICE DATE";
             // 
             // txtPlatNomor
             // 
+            txtPlatNomor.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPlatNomor.Location = new Point(217, 81);
             txtPlatNomor.Name = "txtPlatNomor";
-            txtPlatNomor.Size = new Size(284, 32);
+            txtPlatNomor.Size = new Size(284, 23);
             txtPlatNomor.TabIndex = 6;
             // 
             // txtDeskripsi
             // 
+            txtDeskripsi.Font = new Font("Segoe UI", 9F);
             txtDeskripsi.Location = new Point(217, 211);
             txtDeskripsi.Name = "txtDeskripsi";
-            txtDeskripsi.Size = new Size(284, 32);
+            txtDeskripsi.Size = new Size(284, 23);
             txtDeskripsi.TabIndex = 7;
             // 
             // cmbTipeMobil
             // 
+            cmbTipeMobil.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbTipeMobil.FormattingEnabled = true;
             cmbTipeMobil.Items.AddRange(new object[] { "Avanza", "Terios", "Xpander" });
             cmbTipeMobil.Location = new Point(217, 124);
             cmbTipeMobil.Name = "cmbTipeMobil";
-            cmbTipeMobil.Size = new Size(284, 34);
+            cmbTipeMobil.Size = new Size(284, 23);
             cmbTipeMobil.TabIndex = 8;
             // 
             // cmbTipeServis
             // 
+            cmbTipeServis.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbTipeServis.FormattingEnabled = true;
             cmbTipeServis.Items.AddRange(new object[] { "Servis Kecil", "Servis Sedang", "Servis Besar" });
             cmbTipeServis.Location = new Point(217, 169);
             cmbTipeServis.Name = "cmbTipeServis";
-            cmbTipeServis.Size = new Size(284, 34);
+            cmbTipeServis.Size = new Size(284, 23);
             cmbTipeServis.TabIndex = 9;
             // 
             // dateReport
             // 
-            dateReport.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateReport.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dateReport.Location = new Point(217, 252);
             dateReport.Name = "dateReport";
-            dateReport.Size = new Size(284, 31);
+            dateReport.Size = new Size(284, 21);
             dateReport.TabIndex = 10;
             // 
             // btnSave
             // 
-            btnSave.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSave.Font = new Font("Arial", 11F, FontStyle.Bold);
             btnSave.Location = new Point(217, 314);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(77, 30);
@@ -173,7 +179,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUpdate.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnUpdate.Location = new Point(300, 314);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(98, 30);
@@ -184,7 +190,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDelete.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDelete.Location = new Point(404, 313);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(97, 30);
@@ -197,12 +203,12 @@
             // 
             label7.AutoSize = true;
             label7.BackColor = Color.Transparent;
-            label7.Font = new Font("Soccer League", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Font = new Font("Stencil", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = SystemColors.Highlight;
             label7.Location = new Point(311, 357);
             label7.Margin = new Padding(5, 0, 5, 0);
             label7.Name = "label7";
-            label7.Size = new Size(138, 16);
+            label7.Size = new Size(125, 19);
             label7.TabIndex = 14;
             label7.Text = "Data Damaged";
             // 
@@ -210,7 +216,17 @@
             // 
             dgvDamaged.AllowUserToAddRows = false;
             dgvDamaged.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvDamaged.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvDamaged.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Arial", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvDamaged.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvDamaged.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDamaged.Location = new Point(27, 386);
             dgvDamaged.MultiSelect = false;
@@ -224,7 +240,7 @@
             // 
             // btnClear
             // 
-            btnClear.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnClear.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClear.Location = new Point(509, 314);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(88, 30);
@@ -235,7 +251,7 @@
             // 
             // DamagedForm
             // 
-            AutoScaleDimensions = new SizeF(13F, 26F);
+            AutoScaleDimensions = new SizeF(11F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Lavender;
             BackgroundImageLayout = ImageLayout.Stretch;

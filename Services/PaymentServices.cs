@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Umbrella_gerage.Data;     // ✅ penting untuk akses AppDbContext
+using Umbrella_gerage.Data;  
 using Umbrella_gerage.Models;
 
 namespace Umbrella_gerage.Services
@@ -15,7 +15,7 @@ namespace Umbrella_gerage.Services
             _context = context;
         }
 
-        // 🔹 Ambil semua pembayaran (termasuk relasi Client dan Damaged)
+        // Ambil semua pembayaran (termasuk relasi Client dan Damaged)
         public List<Payment> GetAllPayments()
         {
             return _context.Payments
@@ -57,7 +57,7 @@ namespace Umbrella_gerage.Services
             }
         }
 
-        // 🔹 Hapus data pembayaran
+        // Hapus data pembayaran
         public void DeletePayment(int id)
         {
             var payment = _context.Payments.FirstOrDefault(p => p.PaymentId == id);
@@ -68,7 +68,7 @@ namespace Umbrella_gerage.Services
             }
         }
 
-        // 🔹 Cari pembayaran berdasarkan nama client (opsional)
+        // Cari pembayaran berdasarkan nama client (opsional)
         public List<Payment> SearchByClientName(string name)
         {
             return _context.Payments

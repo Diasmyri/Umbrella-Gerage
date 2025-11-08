@@ -45,5 +45,10 @@ namespace Umbrella_gerage
         {
             OpenChildForm(new PaymentForm());
         }
+
+        private void panelContent_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
